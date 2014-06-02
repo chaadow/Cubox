@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+var cluster = require('cluster');
+
+// Code to run if we're in the master process
+if (cluster.isMaster) {
+    var cpuCount = require('os').cpus().length;
+    for (var i = 0; i < cpuCount; i += 1) {
+        cluster.fork();
+    }
+    cluster.on('exit', function (worker) {
+        console.log('Worker ' + worker.id + ' died :(');
+        cluster.fork();
+    });
+
+// Code to run if we're in a worker process
+} else {
+    var core = require('../core');
+
+    process.on('uncaughtException', function (err) {
+        console.log('Caught exception: ' + err.stack);
+    });
+
+    core.init();
+//
+}

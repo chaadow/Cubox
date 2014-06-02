@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body 		{
+
+            padding-top:80px;
+
+
+            word-wrap:break-word;
+         padding-top:80px; background-image:url('/images/poker.jpg');background-repeat: no-repeat;
+        }
+
+    </style>
+</head>
+<body >
+<div class="container">
+    <% include header.ejs%>
+    <div class="page-header text-center">
+        <h1 style="color:whitesmoke;"><span class="fa"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> User info</h3>
+
+                <% if (user.email) { %>
+                <p>
+                    <strong>id</strong>: <%= user._id %><br>
+                    <strong>username</strong>: <%= user.username %><br>
+                    <strong>Language</strong>: <%= user.language %>
+                </p>
+
+                <p>
+                    <strong>Average duration of game</strong>: <%= user.countgames %><br>
+                    <strong>The amount of time played</strong>: <%= user.counttime %><br>
+                    <strong>Number of games Done</strong>: <%= user.countgames %>
+                </p>
+                <p>
+                    <strong>Number of games won</strong>: <%= user.gameswon %><br>
+                    <strong>Average number of rounds before winning</strong>: <%= user.gameswon %><br>
+                    <strong>Average rounds before elimination or victory</strong>: <%= (user.countgames/user.countround) || 0 %>
+                </p>
+
+
+                <% }  %>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+</html>
