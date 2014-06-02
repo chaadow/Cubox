@@ -1,6 +1,22 @@
-var LocalStrategy   = require('passport-local').Strategy;
-var bcrypt   = require('bcrypt-nodejs');
+var LocalStrategy   = require('passport-local').Strategy
+    ,BasicStrategy = require('passport-http').BasicStrategy
+    ,bcrypt   = require('bcrypt-nodejs');
 
+
+var users = [
+    { id: 1, username: 'cuboxadmin', password: 'cuboxpassword', email: 'cuboxadmin@cubox.com' }
+    , { id: 2, username: 'cubox', password: 'cubox', email: 'cubox@cubox.com' }
+];
+
+function findByUsername(username, fn) {
+    for (var i = 0, len = users.length; i < len; i++) {
+        var user = users[i];
+        if (user.username === username) {
+            return fn(null, user);
+        }
+    }
+    return fn(null, null);
+}
 // expose this function to our app using module.exports
 module.exports = function(passport, pool) {
 
@@ -25,6 +41,28 @@ module.exports = function(passport, pool) {
 
 
     });
+
+    // =========================================================================
+    // API Middleware ============================================================
+    // =========================================================================
+
+    passport.use(new BasicStrategy({
+        },
+        function(username, password, done) {
+            // asynchronous verification, for effect...
+            process.nextTick(function () {
+                findByUsername(username, function(err, user) {
+                    if (err) { return done(err); }
+                    if (!user) { return done(null, false); }
+                    if (user.password != password) { return done(null, false); }
+                    return done(null, user);
+                })
+            });
+        }
+    ));
+
+
+
 
     // =========================================================================
     // LOCAL SIGNUP ============================================================

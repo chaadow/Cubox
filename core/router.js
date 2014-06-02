@@ -6,20 +6,20 @@ exports.run = function route(auth, app, routes, passport){
     routes.forEach(function(val){
         handlers[val] = require('../routes/api/'+val);
         apiRouter.route('/'+val)
-            .get(handlers[val].get)
-            .post(handlers[val].ins);
+            .get(auth, handlers[val].get)
+            .post(auth, handlers[val].ins);
 
         apiRouter.route('/'+val+'/:id')
-            .get(handlers[val].get)
-            .put(handlers[val].upd)
-            .delete(handlers[val].del);
+            .get(auth, handlers[val].get)
+            .put(auth, handlers[val].upd)
+            .delete(auth, handlers[val].del);
     });
     userApi = require('../routes/api/users');
 
     // User api routes.
-    apiRouter.get('/users/:id', userApi.find);
-    apiRouter.post('/users/', userApi.ins);
-    apiRouter.put('users/:id', userApi.upd);
+    apiRouter.get('/users/:id', auth, userApi.find);
+    apiRouter.post('/users/', auth, userApi.ins);
+    apiRouter.put('users/:id', auth, userApi.upd);
     //---
 
     var routes = require('../routes/index')(passport);
