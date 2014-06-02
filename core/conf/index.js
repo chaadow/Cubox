@@ -19,9 +19,6 @@ var tool = require('cloneextend'),
                 port        : '8889',
                 database    : 'cuboxnode'
             }
-        },
-        application:    {
-            errorHandler: { dumpExceptions: true, showStack: true }
         }
     };
     conf.personal = {
