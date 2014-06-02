@@ -36,9 +36,10 @@ to install dependencies:
 
     npm install
 
-### Forking the project
+### Generate Database
 
 run the sql files in the /schema/* directory to generate the schema of your database. 
+
 ### Edit core/conf/index.js
 
 In the conf.personal javascript object, you set the values of your mysql configuration, and the server port.
