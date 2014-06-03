@@ -6,8 +6,18 @@ var tool = require('cloneextend'),
             username    : 'demo',
             password    : 'Que62msjiDU0b2yYvi2zbavw' // bEdESpuGU3rewasaphEfaKedR7r=M#fU
         },
+        db:             {
+            mysql:          {
+                host        : 'localhost',
+                user        : 'root',
+                password    : 'root',
+                port        : '8889',
+                database    : 'cubox'
+            }
+        },
         server:         {
-            port        : '80'
+            host    : 'localhost',
+            port        : '3000'
         }
     };
     conf.development = {
@@ -17,7 +27,7 @@ var tool = require('cloneextend'),
                 user        : 'root',
                 password    : 'root',
                 port        : '8889',
-                database    : 'cuboxnode'
+                database    : 'cubox'
             }
         }
     };

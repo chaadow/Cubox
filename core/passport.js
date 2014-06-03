@@ -130,8 +130,10 @@ module.exports = function(passport, pool) {
             console.log('hello');
                     console.log(rows[0].password);
                     // if the user is found but the password is wrong
-                    if (!(  bcrypt.compareSync(password, rows[0].password  )))
+                    if (!(  bcrypt.compareSync(password, rows[0].password  ))){
+                        console.log("hihihih")
                         return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    }
                     console.log('helloMOTO');
                     // all is well, return successful user
                     return done(null, rows[0]);
