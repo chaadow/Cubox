@@ -31,23 +31,25 @@
             <div class="well">
                 <h3><span class="fa fa-user"></span> User info</h3>
 
-                <% if (user.email) { %>
-                <p>
-                    <strong>id</strong>: <%= user._id %><br>
-                    <strong>username</strong>: <%= user.username %><br>
-                    <strong>Language</strong>: <%= user.language %>
-                </p>
 
-                <p>
-                    <strong>Average duration of game</strong>: <%= user.countgames %><br>
-                    <strong>The amount of time played</strong>: <%= user.counttime %><br>
-                    <strong>Number of games Done</strong>: <%= user.countgames %>
-                </p>
-                <p>
-                    <strong>Number of games won</strong>: <%= user.gameswon %><br>
-                    <strong>Average number of rounds before winning</strong>: <%= user.gameswon %><br>
-                    <strong>Average rounds before elimination or victory</strong>: <%= (user.countgames/user.countround) || 0 %>
-                </p>
+
+                <% if (user) { %>
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>username</strong>: <%= user.username %><br>
+                        <strong>Language</strong>: <%= user.language %>
+                    </p>
+
+                    <p>
+                        <strong>Average duration of game</strong>: <%= user.countgames %><br>
+                        <strong>The amount of time played</strong>: <%= user.counttime %><br>
+                        <strong>Number of games Done</strong>: <%= user.countgames %>
+                    </p>
+                    <p>
+                        <strong>Number of games won</strong>: <%= user.gameswon %><br>
+                        <strong>Average number of rounds before winning</strong>: <%= user.gameswon %><br>
+                        <strong>Average rounds before elimination or victory</strong>: <%= (user.countgames/user.countround) || 0 %>
+                    </p>
 
 
                 <% }  %>

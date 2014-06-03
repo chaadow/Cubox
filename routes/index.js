@@ -4,7 +4,8 @@ var router = express.Router();
 module.exports = function(passport){
 
     router.get('/', function(req, res) {
-        res.render('index.ejs', { title: 'Express' });
+        res.render('index.ejs', { title: 'Express', user : req.user});
+
     });
 
     // SIGNUP ROUTES
@@ -30,7 +31,7 @@ module.exports = function(passport){
             res.render('signin.ejs', { message: req.flash('loginMessage') });
         })
         .post(passport.authenticate('local-login', {
-            successRedirect : '/halo', // redirect to the secure profile section
+            successRedirect : '/', // redirect to the secure profile section
             failureRedirect : '/profile', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
