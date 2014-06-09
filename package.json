@@ -24,6 +24,7 @@
     "socket.io": "*",
     "passport-local" : "~0.1.6",
     "connect-flash" : "~0.1.1",
-    "bcrypt-nodejs" : "latest"
+    "bcrypt-nodejs" : "latest",
+    "strong-cluster-connect-store": "latest"
   }
 }
