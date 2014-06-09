@@ -36,9 +36,9 @@ var tool = require('cloneextend'),
             mysql:          {
                 host        : 'localhost',
                 user        : 'root',
-                password    : 'root',
-                port        : '8889',
-                database    : 'cuboxnode'
+                password    : '',
+                port        : '3306',
+                database    : 'cubox'
             }
         },
         server:         {

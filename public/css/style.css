@@ -1252,12 +1252,154 @@
 /*********************************************************************************/
 /* Hack victor                                                                    */
 /*********************************************************************************/
+.animatedlog {
+    width: 200px;
+    height: 200px;
+    margin: 4em auto;
+    background-color: #2980b9;
+    -webkit-animation: square-to-circle 2s 1s infinite cubic-bezier(1,.015,.295,1.225) alternate;
+    -moz-animation: square-to-circle 2s 1s infinite cubic-bezier(1,.015,.295,1.225) alternate;
+    position: absolute;
+    z-index: 1;
+    margin-left: 650px;
+}
+@keyframes square-to-circle {
+    25% {
+        border-radius:50% 0 0 0;
+        background:#00a5d2;
+        -webkit-transform-origin: rotate(45deg);
+        -moz-transform-origin: rotate(45deg);
+        -o-transform-origin: rotate(45deg);
+        transform:rotate(45deg);
+        border: none;
+
+    }
+    50% {
+        border-radius:50% 50% 0 0;
+        background:#00bff3;
+        transform:rotate(90deg);
+        -webkit-transform-origin: rotate(90deg);
+        -moz-transform-origin: rotate(90deg);
+        -o-transform-origin: rotate(90deg);
+        border: none;
+    }
+    75% {
+        border-radius:50% 50% 50% 0;
+        background:#09d3ff;
+        transform:rotate(135deg);
+        -webkit-transform-origin: rotate(135deg);
+        -moz-transform-origin: rotate(135deg);
+        -o-transform-origin: rotate(135deg);
+        border: none;
+    }
+    100% {
+        border-radius:50%;
+        background:#7bf4ff;
+        transform:rotate(180deg);
+        -webkit-transform-origin: rotate(180deg);
+        -moz-transform-origin: rotate(180deg);
+        -o-transform-origin: rotate(180deg);
+        border: none;
+    }
+}
+
+@-webkit-keyframes square-to-circle {
+    25% {
+        border-radius:50% 0 0 0;
+        background:#00a5d2;
+        -webkit-transform-origin: rotate(45deg);
+        -moz-transform-origin: rotate(45deg);
+        -o-transform-origin: rotate(45deg);
+        transform:rotate(45deg);
+        border: none;
+
+    }
+    50% {
+        border-radius:50% 50% 0 0;
+        background:#00bff3;
+        transform:rotate(90deg);
+        -webkit-transform-origin: rotate(90deg);
+        -moz-transform-origin: rotate(90deg);
+        -o-transform-origin: rotate(90deg);
+        border: none;
+    }
+    75% {
+        border-radius:50% 50% 50% 0;
+        background:#09d3ff;
+        transform:rotate(135deg);
+        -webkit-transform-origin: rotate(135deg);
+        -moz-transform-origin: rotate(135deg);
+        -o-transform-origin: rotate(135deg);
+        border: none;
+    }
+    100% {
+        border-radius:50%;
+        background:#7bf4ff;
+        transform:rotate(180deg);
+        -webkit-transform-origin: rotate(180deg);
+        -moz-transform-origin: rotate(180deg);
+        -o-transform-origin: rotate(180deg);
+        border: none;
+    }
+}
+
+@-moz-keyframes square-to-circle {
+    25% {
+        border-radius:50% 0 0 0;
+        background:#00a5d2;
+        -webkit-transform-origin: rotate(45deg);
+        -moz-transform-origin: rotate(45deg);
+        -o-transform-origin: rotate(45deg);
+        transform:rotate(45deg);
+        border: none;
+
+    }
+    50% {
+        border-radius:50% 50% 0 0;
+        background:#00bff3;
+        transform:rotate(90deg);
+        -webkit-transform-origin: rotate(90deg);
+        -moz-transform-origin: rotate(90deg);
+        -o-transform-origin: rotate(90deg);
+        border: none;
+    }
+    75% {
+        border-radius:50% 50% 50% 0;
+        background:#09d3ff;
+        transform:rotate(135deg);
+        -webkit-transform-origin: rotate(135deg);
+        -moz-transform-origin: rotate(135deg);
+        -o-transform-origin: rotate(135deg);
+        border: none;
+    }
+    100% {
+        border-radius:50%;
+        background:#7bf4ff;
+        transform:rotate(180deg);
+        -webkit-transform-origin: rotate(180deg);
+        -moz-transform-origin: rotate(180deg);
+        -o-transform-origin: rotate(180deg);
+        border: none;
+    }
+}
+
+.lead {
+    margin-top: 4em;
+    font-size: 18em;
+    position: relative;
+}
+
+.lead.right{
+    margin-left: 250px;
+}
+
+
 
 	#main-wrapper .folder:before {
 		margin-right: 15px;
 	}
 	
-	#banner form {
+	#banner-connex {
 		margin-top: 5%;
 	}
 	
@@ -1270,7 +1412,7 @@
 		padding-left: 5px;
 	}
 	#banner form input:last-child {
-		padding: 0.85em 2.75em 0.85em 2.75em !important;
+		padding: 0.85em 2.75em 0.85em 2.75em;
 	}
 	
 	#features a.image {
@@ -1299,5 +1441,42 @@
 	.hide {
 		display:none;
 	}
-	
-	
+
+    #banner-connex input:last-child {
+        display: block;
+        margin-left: 105px;
+    }
+
+    #banner-subscribe .first input {
+        float: initial;
+    }
+
+    #banner-subscribe .row input {
+        padding: 0px !important;
+    }
+
+    #banner-subscribe .left-align {
+       margin-left: 25%;
+    }
+
+    /* Profil */
+
+    .pentagon {
+    margin: 30px 0 0 0; /* cosmetic */
+    position: relative;
+    width: 54px;
+    border-width: 50px 18px 0;
+    border-style: solid;
+    border-color: #fc2e5a transparent;
+    }
+.pentagon:before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -85px;
+    left: -18px;
+    border-width: 0 45px 35px;
+    border-style: solid;
+    border-color: transparent transparent #fc2e5a;
+}
