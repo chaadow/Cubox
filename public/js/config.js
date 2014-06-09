@@ -66,4 +66,14 @@ jQuery(function() {
 	// Forms (IE <= 9 only)
 		if (jQuery.browser.msie && jQuery.browser.version <= 9)
 			jQuery('form').n33_formerize();
+
+    $( "#uploadTrigger" ).click(function() {
+        $("#UploadBox").removeClass('hide');
+    });
+
+    $( "#closePop" ).click(function() {
+        $("#UploadBox").addClass('hide');
+    });
+
+
 });

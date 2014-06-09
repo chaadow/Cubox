@@ -185,7 +185,7 @@
 													<!-- Excerpt -->
 														<article class="is-excerpt">
 															<header>
-																<span class="date">Finder</span>
+																<span id="uploadTrigger" class="button">ADD A FILE</span>
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
 															<ul>
@@ -219,6 +219,28 @@
 								</div>
 								
 								<div id="content" class="8u">
+                                    <div class="explorer">
+                                        <table>
+                                           <tr>
+                                                <th>File name</th><th>Size</th><th>Share</th><th>Actions</th>
+                                           </tr>
+                                            <tr class="odd">
+                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                        <div id="UploadBox" class="hide">
+                                            <h3>File Uploader</h3>
+                                            <span id="closePop">X</span>
+                                                <div id='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" id="NameBox"><br>
+                                                    <button type='button' id='UploadButton' class='button'>Upload</button>
+                                                </div>
+                                        </div>
 				
 								</div>
 

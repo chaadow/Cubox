@@ -32,15 +32,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="159" column="48" selection-start="6283" selection-end="6283" vertical-scroll-proportion="-103.96154" vertical-offset="0" max-vertical-offset="5304">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="error.ejs" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/error.ejs">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1466" column="16" selection-start="40083" selection-end="40083" vertical-scroll-proportion="0.0" vertical-offset="24500" max-vertical-offset="25279">
+            <state line="1556" column="24" selection-start="41814" selection-end="41814" vertical-scroll-proportion="0.9020173" vertical-offset="25826" max-vertical-offset="26707">
               <folding />
             </state>
           </provider>
@@ -71,7 +62,7 @@
       <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
+            <state line="77" column="0" selection-start="4386" selection-end="4386" vertical-scroll-proportion="0.0" vertical-offset="683" max-vertical-offset="1445">
               <folding />
             </state>
           </provider>
@@ -86,6 +77,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="236" column="65" selection-start="9219" selection-end="9219" vertical-scroll-proportion="-13.730769" vertical-offset="3655" max-vertical-offset="5678">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="colour.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/colour.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style-desktop.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style-desktop.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="11" selection-start="2519" selection-end="2519" vertical-scroll-proportion="0.66902405" vertical-offset="2077" max-vertical-offset="6545">
+            <state line="150" column="11" selection-start="2519" selection-end="2519" vertical-scroll-proportion="0.0" vertical-offset="2077" max-vertical-offset="6545">
               <folding />
             </state>
           </provider>
@@ -148,14 +148,14 @@
         <option value="$PROJECT_DIR$/core/router.js" />
         <option value="$PROJECT_DIR$/views/profile.ejs" />
         <option value="$PROJECT_DIR$/core/index.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/public/js/config.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/public/css/template.css" />
         <option value="$PROJECT_DIR$/views/dashboard.ejs" />
         <option value="$PROJECT_DIR$/public/css/colour.css" />
         <option value="$PROJECT_DIR$/public/css/style-desktop.css" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/js/config.js" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
       </list>
     </option>
   </component>
@@ -695,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/npm-debug.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
@@ -712,20 +705,6 @@
     <entry file="file://$PROJECT_DIR$/core/conf/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="25" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.33663365" vertical-offset="340" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1466" column="16" selection-start="40083" selection-end="40083" vertical-scroll-proportion="0.0" vertical-offset="24500" max-vertical-offset="25279">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
           <folding />
         </state>
       </provider>
@@ -744,9 +723,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+    <entry file="file://$PROJECT_DIR$/views/dashboard.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="48" selection-start="6283" selection-end="6283" vertical-scroll-proportion="-103.96154" vertical-offset="0" max-vertical-offset="5304">
+        <state line="108" column="20" selection-start="3648" selection-end="3648" vertical-scroll-proportion="-11.807693" vertical-offset="1529" max-vertical-offset="3264">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/npm-debug.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
           <folding />
         </state>
       </provider>
@@ -758,9 +744,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/dashboard.ejs">
+    <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="20" selection-start="3648" selection-end="3648" vertical-scroll-proportion="-11.807693" vertical-offset="1529" max-vertical-offset="3264">
+        <state line="150" column="11" selection-start="2519" selection-end="2519" vertical-scroll-proportion="0.0" vertical-offset="2077" max-vertical-offset="6545">
           <folding />
         </state>
       </provider>
@@ -772,9 +758,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="11" selection-start="2519" selection-end="2519" vertical-scroll-proportion="0.66902405" vertical-offset="2077" max-vertical-offset="6545">
+        <state line="236" column="65" selection-start="9219" selection-end="9219" vertical-scroll-proportion="-13.730769" vertical-offset="3655" max-vertical-offset="5678">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="0" selection-start="4386" selection-end="4386" vertical-scroll-proportion="0.0" vertical-offset="683" max-vertical-offset="1445">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1556" column="24" selection-start="41814" selection-end="41814" vertical-scroll-proportion="0.9020173" vertical-offset="25826" max-vertical-offset="26707">
           <folding />
         </state>
       </provider>

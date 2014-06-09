@@ -1480,3 +1480,87 @@
     border-style: solid;
     border-color: transparent transparent #fc2e5a;
 }
+
+    #content {
+        height: 500px;
+    }
+
+    #main .button {
+        cursor: pointer;
+    }
+
+    #content .even {
+        background-color: rgba(0, 133, 255, 0.1);
+    }
+
+    #content tr:first-child {
+        border-bottom: 1px solid grey ;
+    }
+
+    #content th {
+        font-weight: bold;
+        text-align: left;
+    }
+
+    #content td {
+        font-size: 14px;
+        line-height: 35px;
+        padding-left: 5px;
+    }
+
+    #content td:first-child {
+        width: 400px;
+    }
+
+    #content tr td:last-child {
+        width: 50px;
+        padding-left: 0px;
+    }
+
+    #content tr td:last-child a{
+        margin-left: 10px;
+
+    }
+
+    #explorer {
+        max-height: 500px;
+    }
+
+    /**  Upload **/
+
+    #UploadBox {
+        background: #FFF;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -200px;
+        margin-top: -150px;
+        width: 400px;
+        border: 1px solid #DFDFDF;
+
+        -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+        -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+
+        -webkit-border-radius: 11px;
+        -moz-border-radius: 11px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    #UploadBox h3{
+        display: inline-block;
+    }
+    #UploadBox #closePop {
+        float: right;
+        cursor: pointer;
+    }
+    #UploadBox button {
+        float: right;
+    }
+
+    #NameBox {
+        width: 88%;
+        margin-bottom: 20px;
+    }
