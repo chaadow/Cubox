@@ -1,8 +1,3 @@
-/*
-	Strongly Typed 1.1 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 window._skel_config = {
 	prefix: 'css/style',
@@ -71,10 +66,14 @@ jQuery(function() {
 	// Forms (IE <= 9 only)
 		if (jQuery.browser.msie && jQuery.browser.version <= 9)
 			jQuery('form').n33_formerize();
-		
-		// Slider banner connex/subscribe
-	$( "#sub-slide" ).click(function() {
-	  $('#banner-subscribe').removeClasse('hide');
-	});
-	
+
+    $( "#uploadTrigger" ).click(function() {
+        $("#UploadBox").removeClass('hide');
+    });
+
+    $( "#closePop" ).click(function() {
+        $("#UploadBox").addClass('hide');
+    });
+
+
 });

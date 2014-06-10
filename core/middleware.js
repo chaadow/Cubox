@@ -6,7 +6,8 @@ exports.setup = function setup(app, conf, passport){
       , session = require('express-session')
       , flash    = require('connect-flash')
       , favicon = require('static-favicon')
-      , logger = require('morgan')
+      , logger = require('morgan'),
+        ClusterStore = require('strong-cluster-connect-store')(session)
       , cookieParser = require('cookie-parser')
       , bodyParser = require('body-parser')
       , pool    = mysql.createPool({
@@ -25,14 +26,18 @@ exports.setup = function setup(app, conf, passport){
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
-    app.use(methodOverride());
     app.use(cookieParser());
-    app.use(session({ secret: 'A65GIhJBtOv0dTIqMw0c' }));
+    app.use(methodOverride());
+    app.use(express.static(__dirname + '../public'));
+    app.use(express.static(path.join(__dirname, '../public/')));
+    app.use(session({
+        store: new ClusterStore(),
+        secret: "1234df"
+    }));
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
-    app.use(express.static(__dirname + '../public'));
-    app.use(express.static(path.join(__dirname, '../public/')));
+
 
     /// error handlers
 

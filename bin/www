@@ -5,6 +5,7 @@ var cluster = require('cluster');
 // Code to run if we're in the master process
 if (cluster.isMaster) {
     var cpuCount = require('os').cpus().length;
+    require('strong-cluster-connect-store').setup();
     for (var i = 0; i < cpuCount; i += 1) {
         cluster.fork();
     }

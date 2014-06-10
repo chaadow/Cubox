@@ -55,3 +55,7 @@ function isNotLoggedIn(req, res, next) {
 
     res.redirect('/profile');
 }
+
+router.get('/dashboard', function(req, res){
+    res.render('dashboard.ejs', {user: req.user});
+});
