@@ -5,6 +5,27 @@ var cluster = require('cluster');
 // Code to run if we're in the master process
 if (cluster.isMaster) {
     var cpuCount = require('os').cpus().length;
+
+    require('strong-cluster-connect-store').setup();
+
+    var server = require('http').createServer();
+    var io = require('socket.io').listen(server);
+    var fs = require('fs');
+
+//    var RedisStore = require('socket.io/lib/stores/redis');
+//    var redis = require('socket.io/node_modules/redis');
+//
+//    io.set('store', new RedisStore({
+//        redisPub: redis.createClient(),
+//        redisSub: redis.createClient(),
+//        redisClient: redis.createClient()
+//    }));
+//    setInterval(function() {
+//        // all workers will receive this in Redis, and emit
+//        io.sockets.emit('data', 'payload');
+//    }, 1000);
+
+
     for (var i = 0; i < cpuCount; i += 1) {
         cluster.fork();
     }
@@ -15,12 +36,15 @@ if (cluster.isMaster) {
 
 // Code to run if we're in a worker process
 } else {
-    var core = require('../core');
 
-    process.on('uncaughtException', function (err) {
-        console.log('Caught exception: ' + err.stack);
-    });
+        var core = require('../core');
 
-    core.init();
-//
+        process.on('uncaughtException', function (err) {
+            console.log('Caught exception: ' + err.stack);
+        });
+
+        core.init();
+
+
+
 }

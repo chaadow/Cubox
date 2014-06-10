@@ -7,6 +7,7 @@ exports.setup = function setup(app, conf, passport){
       , flash    = require('connect-flash')
       , favicon = require('static-favicon')
       , logger = require('morgan')
+      , ClusterStore = require('strong-cluster-connect-store')(session)
       , cookieParser = require('cookie-parser')
       , bodyParser = require('body-parser')
       , pool    = mysql.createPool({
@@ -22,22 +23,38 @@ exports.setup = function setup(app, conf, passport){
 
     require('./passport')(passport, pool);
     app.use(favicon());
+
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
-    app.use(methodOverride());
     app.use(cookieParser());
-    app.use(session({ secret: 'A65GIhJBtOv0dTIqMw0c' }));
+    app.use(methodOverride());
+    app.use(express.static(__dirname + '../public'));
+    app.use(express.static(path.join(__dirname, '../public/')));
+
+    app.use(session({
+        store: new ClusterStore(),
+        secret: "1234df"
+        //key: 'sid',
+        //cookie: {secure: false}
+    }));
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
-    app.use(express.static(__dirname + '../public'));
-    app.use(express.static(path.join(__dirname, '../public/')));
+
 
     /// error handlers
 
 // development error handler
 // will print stacktrace
+
+        app.use(function(req, res, next) {
+            req.mysql   = pool;
+            req.cache   = require('memoizee');
+            req.store   = app.locals;
+            next();
+        });
+
     if (process.env.NODE_ENV === 'development') {
         app.use(function(err, req, res, next) {
             res.status(err.status || 500);
@@ -57,14 +74,6 @@ exports.setup = function setup(app, conf, passport){
             error: {}
         });
     });
-        app.use(function(req, res, next) {
-            req.mysql   = pool;
-            req.cache   = require('memoizee');
-            req.store   = app.locals;
-            next();
-        });
-
-
 
 
 };

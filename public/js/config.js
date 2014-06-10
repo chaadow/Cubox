@@ -58,7 +58,7 @@ jQuery(function() {
 	jQuery.browser={};(function(){jQuery.browser.msie=false;jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)\./)){jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
 
 	// Dropdowns
-		$('#nav > ul').dropotron({ 
+		$('#nav > ul').dropotron({
 			offsetX: -2,
 			offsetY: -8,
 			mode: 'fade',
@@ -71,10 +71,6 @@ jQuery(function() {
 	// Forms (IE <= 9 only)
 		if (jQuery.browser.msie && jQuery.browser.version <= 9)
 			jQuery('form').n33_formerize();
-		
-		// Slider banner connex/subscribe
-	$( "#sub-slide" ).click(function() {
-	  $('#banner-subscribe').removeClasse('hide');
-	});
-	
+
+
 });

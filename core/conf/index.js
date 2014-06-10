@@ -38,7 +38,7 @@ var tool = require('cloneextend'),
                 user        : 'root',
                 password    : 'root',
                 port        : '8889',
-                database    : 'cuboxnode'
+                database    : 'cubox'
             }
         },
         server:         {

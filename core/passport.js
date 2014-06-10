@@ -22,21 +22,24 @@ module.exports = function(passport, pool) {
 
     passport.serializeUser(function(user, done) {
 
-
+        console.log(" ENTER SERIALIZE WITH USER: "+ JSON.stringify(user));
         done(null, user.id);
     });
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
 
-
+console.log(" ENTER DESERIALIZE WITH ID: "+ id);
         pool.getConnection(function(err, connection){
-            connection.query("select * from users where id = "+id,function(err,rows){
+            connection.query("select * from users where id = ?",id,function(err,rows){
 
-                if (err) console.err(err);
+                if (err) console.error(err);
+                console.log(err);
+                console.log(" ROWS OF 0 IS "+ JSON.stringify(rows[0]));
                 done(err, rows[0]);
 
             });
+            connection.release();
         });
 
 
@@ -45,21 +48,21 @@ module.exports = function(passport, pool) {
     // =========================================================================
     // API Middleware ============================================================
     // =========================================================================
-
-    passport.use(new BasicStrategy({
-        },
-        function(username, password, done) {
-            // asynchronous verification, for effect...
-            process.nextTick(function () {
-                findByUsername(username, function(err, user) {
-                    if (err) { return done(err); }
-                    if (!user) { return done(null, false); }
-                    if (user.password != password) { return done(null, false); }
-                    return done(null, user);
-                })
-            });
-        }
-    ));
+//
+//    passport.use(new BasicStrategy({
+//        },
+//        function(username, password, done) {
+//            // asynchronous verification, for effect...
+//            process.nextTick(function () {
+//                findByUsername(username, function(err, user) {
+//                    if (err) { return done(err); }
+//                    if (!user) { return done(null, false); }
+//                    if (user.password != password) { return done(null, false); }
+//                    return done(null, user);
+//                })
+//            });
+//        }
+//    ));
 
 
 
@@ -79,32 +82,47 @@ module.exports = function(passport, pool) {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
+            console.log(req.mysql);
             req.mysql.getConnection( function(err, connection){
-                connection.query("select * from users where email = '"+email+"'",function(err,rows){
+                if (err) {
+                    console.error('CONNECTION error: ',err);
+                    res.statusCode = 503;
+                    res.send({
+                        result: 'error',
+                        err:    err.code
+                    });
+                } else {
+                    console.log("CONNECTION HAHAHAHAHAH   "+ email);
+                    connection.query("select * from users where email = ?", email, function (err, rows) {
 
-                    if (err)
-                        return done(err);
-                    if (rows.length) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-                    } else {
+                        if (err)
+                            return done(err);
 
-                        // if there is no user with that email
-                        // create the user
-                        var salt = bcrypt.genSaltSync(8);
-                        var newUserMysql = new Object();
-                        newUserMysql.email    = email;
-                        newUserMysql.password = bcrypt.hashSync(password, salt,null);
-                        newUserMysql.name = req.body.name;
-                        newUserMysql.salt = salt;
-                        connection.query('INSERT INTO users SET ?',newUserMysql,function(err,rows){
-                            if(err) throw err;
 
-                            newUserMysql.id = rows.insertId;
+                            if (rows.length) {
+                                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                            } else {
 
-                            return done(null, newUserMysql);
-                        });
-                    }
-                });
+                                // if there is no user with that email
+                                // create the user
+                                var salt = bcrypt.genSaltSync(8);
+                                var newUserMysql = new Object();
+                                newUserMysql.email = email;
+                                newUserMysql.password = bcrypt.hashSync(password, salt, null);
+                                newUserMysql.name = req.body.name;
+                                newUserMysql.salt = salt;
+                                connection.query('INSERT INTO users SET ?', newUserMysql, function (err, rows) {
+                                    if (err) throw err;
+
+                                    newUserMysql.id = rows.insertId;
+
+                                    return done(null, newUserMysql);
+                                });
+                            }
+
+                    });
+                }
+                //connection.release();
             })
         }));
 
@@ -127,7 +145,7 @@ module.exports = function(passport, pool) {
                     if (!rows.length) {
                         return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
                     }
-            console.log('hello');
+
                     console.log(rows[0].password);
                     // if the user is found but the password is wrong
                     if (!(  bcrypt.compareSync(password, rows[0].password  ))){
@@ -139,6 +157,7 @@ module.exports = function(passport, pool) {
                     return done(null, rows[0]);
 
                 });
+                connection.release();
             });
         }));
 
