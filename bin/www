@@ -5,7 +5,6 @@ var cluster = require('cluster');
 // Code to run if we're in the master process
 if (cluster.isMaster) {
     var cpuCount = require('os').cpus().length;
-
     require('strong-cluster-connect-store').setup();
 
     var server = require('http').createServer();
@@ -24,7 +23,6 @@ if (cluster.isMaster) {
 //        // all workers will receive this in Redis, and emit
 //        io.sockets.emit('data', 'payload');
 //    }, 1000);
-
 
     for (var i = 0; i < cpuCount; i += 1) {
         cluster.fork();

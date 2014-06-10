@@ -30,7 +30,11 @@
 					<div id="header" class="container">
 						
 						<!-- Logo -->
-							<h1 id="logo"><img src="/images/logo.png" title="Okayo" alt="Okayo"></h1>
+                            <!-- <div class="animatedlog"></div>
+                            <span class="lead left">CUB</span>
+                            <span class="lead right">X</span>-->
+
+							<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>
 							<p>Store, share & manage your files everytime & everywhere</p>
 						
 						<!-- Nav -->
@@ -119,33 +123,47 @@
 				<div class="inner">
 					
 					<section id="banner" class="container">
+                 <% if (!user) {%>
 					<div class="row">
-						<div class="8u">
+						<div class="6u">
 								<form id="banner-connex" name="banner-connect" method="POST" action="/signin">
-									<input type="text" name="email" placeholder="Your email..."/>
-									<input type="password" name="password" placeholder="password"/>
+									<input type="text" name="email" placeholder="Your email..." required/>
+									<input type="password" name="password" placeholder="password" required/>
 									<input type="submit" name="submit" value="Connexion" class="button button-icon fa fa-users"/>
 								</form>
-								<form id="banner-subscribe" name="banner-subscribe" action="/signup" method="post" >
-									<input type="radio" name="offer-choice-classic">FREE</input>
-									<input type="radio" name="offer-choice-membox">MEMBOX</input>
-									<input type="radio" name="offer-choice-enterprise">ENTERPRISE</input>
-                                    <input type="text" name="name" placeholder="Your name..."/>
-									<input type="text" name="email" placeholder="Your email..."/>
-									<input type="password" name="password" placeholder="password"/>
-									<input type="password" name="password-check" placeholder="password verification"/>
-									<input type="submit" name="submit" value="Create account" class="button button-icon fa fa-users"/>
-								</form>
-							
+
 						</div>
-						<div class="4u">
-							<ul class="actions">
-								<li><span id="sub-slide" class="button button-icon fa fa-users">Subscribe</span></li>
-							</ul>
+						<div class="6u">
+                            <form id="banner-subscribe" name="banner-subscribe" action="/signup" method="post" >
+                                <div class="first row">
+                                    <input type="radio" name="offer-choice-classic" checked="checked">FREE
+                                    <input type="radio" name="offer-choice-membox">MEMBOX
+                                    <input type="radio" name="offer-choice-enterprise">ENTERPRISE
+                                </div>
+                                <div class="row">
+                                    <input type="text" class="left-align" name="name" placeholder="Your name..." required/>
+                                    <input type="text" name="email" placeholder="Your email..." required/>
+                                </div>
+                                <div class="row">
+                                    <input type="password" class="left-align" name="password" placeholder="password" required/>
+                                    <input type="password" name="password-check" placeholder="password verification" required/>
+                                </div>
+                                <input type="submit" name="submit" value="Create account" class="button button-icon fa fa-users"/>
+                            </form>
 						</div>
 						</div>
 					</section>
-				
+                <% }%>
+                <% if (user) {%>
+                    <div class="row">
+                        <div class="profile-avatar">
+                            <div class="pentagon">
+
+                            </div>
+                            <a href="#"><img src="http://dl.dropboxusercontent.com/s/7pcnqq18skh1myk/avatar.jpg" alt="Anis M" /></a>
+                        </div>
+                    </div>
+                <% }%>
 			</div>
 		</div>
 
@@ -167,7 +185,7 @@
 													<!-- Excerpt -->
 														<article class="is-excerpt">
 															<header>
-																<span class="date">Finder</span>
+																<span id="uploadTrigger" class="button">ADD A FILE</span>
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
 															<ul>
@@ -201,6 +219,28 @@
 								</div>
 								
 								<div id="content" class="8u">
+                                    <div class="explorer">
+                                        <table>
+                                           <tr>
+                                                <th>File name</th><th>Size</th><th>Share</th><th>Actions</th>
+                                           </tr>
+                                            <tr class="odd">
+                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                        <div id="UploadBox" class="hide">
+                                            <h3>File Uploader</h3>
+                                            <span id="closePop">X</span>
+                                                <div id='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" id="NameBox"><br>
+                                                    <button type='button' id='UploadButton' class='button'>Upload</button>
+                                                </div>
+                                        </div>
 				
 								</div>
 

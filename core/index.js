@@ -5,7 +5,7 @@ exports.init = function init(){
         , express = require('express')
         , passport = require('passport')
         , app     = express()
-        , conf    = require('./conf').get(process.env.NODE_ENV); // Use 'personal' instead of 'process.env.NODE_ENV.
+        , conf    = require('./conf').get("personal"); // Use 'personal' instead of 'process.env.NODE_ENV.
 
     middleware.setup(app, conf, passport);
 

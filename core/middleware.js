@@ -8,6 +8,7 @@ exports.setup = function setup(app, conf, passport){
       , favicon = require('static-favicon')
       , logger = require('morgan')
       , ClusterStore = require('strong-cluster-connect-store')(session)
+
       , cookieParser = require('cookie-parser')
       , bodyParser = require('body-parser')
       , pool    = mysql.createPool({
