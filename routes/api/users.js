@@ -4,6 +4,69 @@ formidable.IncomingForm.prototype.uploadDir = './Uploads';
 
 formidable.IncomingForm.prototype.keepExtensions = true;
 
+var fs = require('fs');
+function ensureExists(path, mask, cb) {
+    if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+        cb = mask;
+        mask = 0777;
+    }
+    fs.mkdir(path, mask, function(err) {
+        if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+        } else cb(null); // successfully created folder
+    });
+}
+
+exports.login = function(req, res){
+
+    req.mysql.getConnection( function(err, connection){
+        if(err) {
+            console.error('CONNECTION error: ', err);
+            res.statusCode = 503;
+            res.send({
+                result: 'error',
+                err: err.code
+            });
+        }else {
+            connection.query("select * from users where email = '" + req.body.email + "'", function (err, rows) {
+
+                if (err) {
+                    console.error('CONNECTION error: ',err);
+                    res.statusCode = 503;
+                    res.send({
+                        result: 'error',
+                        err:    err.code
+                    });
+                } else {
+                        if (rows.length === 0){
+                            res.statusCode = 204;
+                            console.log("hii");
+                            res.send({result: 'error'});
+                        }
+                        else if (!(  bcrypt.compareSync(req.body.password, rows[0]["password"]))) {
+                            res.statusCode= 401;
+                            res.send({ result: "password incorrect"})
+                        } else {
+                            ensureExists('Uploads/' + rows[0]["name"] + rows[0]["id"], 0744, function (err) {
+                                if (err) throw err; // handle folder creation error
+                                // else // we're all good
+                            });
+                            res.send({
+                                result: 'success',
+                                err:    '',
+                                id:     rows[0]["id"],
+                                json:   rows[0],
+                                length: 1
+                            });
+                        }
+                        connection.release();
+                }
+            });
+
+        }
+    });
+};
 
 exports.find = function(req,res){
     req.mysql.getConnection(function(err, connection) {
@@ -109,6 +172,10 @@ exports.ins = function(req,res){
                         err:    err.code
                     });
                 } else {
+                    ensureExists('Uploads/' + (data["Name"]||data.name) + result.insertId, 0744, function (err) {
+                        if (err) throw err; // handle folder creation error
+                        // else // we're all good
+                    });
                     res.send({
                         result: 'success',
                         err:    '',

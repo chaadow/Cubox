@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
 var cluster = require('cluster');
+var _ = require('underscore');
 
 // Code to run if we're in the master process
 if (cluster.isMaster) {
     var cpuCount = require('os').cpus().length;
     require('strong-cluster-connect-store').setup();
 
-    var server = require('http').createServer();
-    var io = require('socket.io').listen(server);
-    var fs = require('fs');
+//    var server = require('http').createServer();
+//    var io = require('socket.io').listen(server);
+//    var fs = require('fs');
 
 //    var RedisStore = require('socket.io/lib/stores/redis');
 //    var redis = require('socket.io/node_modules/redis');
@@ -23,10 +24,31 @@ if (cluster.isMaster) {
 //        // all workers will receive this in Redis, and emit
 //        io.sockets.emit('data', 'payload');
 //    }, 1000);
+    var worker,
+        workers = {};
 
+    var killWorkers = function(reason){
+        return function(reason) {
+            console.log('Killing because we received ' + reason);
+            _.each(workers, function(w){
+                w.kill();
+                console.log('Killed worker ' + w.pid);
+            });
+            console.log('Shutting down master process');
+            process.exit(1);
+        };
+    };
+
+    // Fork workers.
+    console.log(cpuCount + ' CPUs detected.');
     for (var i = 0; i < cpuCount; i += 1) {
-        cluster.fork();
-    }
+        worker = cluster.fork();
+        workers[worker.pid] = worker;
+    };
+
+    process.on('uncaughtException', killWorkers('uncaughtException'));
+    process.on('exit', killWorkers('exit'));
+
     cluster.on('exit', function (worker) {
         console.log('Worker ' + worker.id + ' died :(');
         cluster.fork();

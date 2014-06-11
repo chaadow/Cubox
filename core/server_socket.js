@@ -11,6 +11,7 @@ exports.on = function (io){
     io.sockets.on('connection', function (socket) {
         socket.on('Start', function (data) { //data contains the variables that we passed through in the html file
             var Name = data['Name'];
+            console.log("hello");
             Files[Name] = {  //Create a new Entry in The Files Variable
                 FileSize : data['Size'],
                 Data	 : "",
@@ -48,14 +49,23 @@ exports.on = function (io){
                 fs.write(Files[Name]['Handler'], Files[Name]['Data'], null, 'Binary', function(err, Writen){
                     var inp = fs.createReadStream("Temp/" + Name);
                     var out = fs.createWriteStream("Uploads/" + Name);
-                    util.pump(inp, out, function(){
+                    var r= inp.pipe(out);
+                    r.on ('finish', function(){
                         fs.unlink("Temp/" + Name, function () { //This Deletes The Temporary File
-                            exec("ffmpeg -i Uploads/" + Name  + " -ss 01:30 -r 1 -an -vframes 1 -f mjpeg Uploads/" + Name  + ".jpg", function(err){
-                                console.error(err);
-                                socket.emit('Done', {'Image' : 'Uploads/' + Name + '.jpg'});
-                            });
+//                            exec("ffmpeg -i Uploads/" + Name  + " -ss 01:30 -r 1 -an -vframes 1 -f mjpeg Uploads/" + Name  + ".jpg", function(err){
+//                                console.error(err);
+//                                socket.emit('Done', {'Image' : 'Uploads/' + Name + '.jpg'});
+//                            });
                         });
                     });
+//                    util.pump(inp, out, function(){
+//                        fs.unlink("Temp/" + Name, function () { //This Deletes The Temporary File
+//                            exec("ffmpeg -i Uploads/" + Name  + " -ss 01:30 -r 1 -an -vframes 1 -f mjpeg Uploads/" + Name  + ".jpg", function(err){
+//                                console.error(err);
+//                                socket.emit('Done', {'Image' : 'Uploads/' + Name + '.jpg'});
+//                            });
+//                        });
+//                    });
                 });
             }
             else if(Files[Name]['Data'].length > (10485760)){ //If the Data Buffer reaches 10MB

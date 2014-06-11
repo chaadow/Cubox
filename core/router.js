@@ -20,7 +20,7 @@ exports.run = function route(auth, app, routes, passport){
     apiRouter.get('/users/:id', userApi.find);
     apiRouter.post('/users', userApi.ins);
     apiRouter.put('/users/:id', userApi.upd);
-    apiRouter.post('/users/upload', userApi.upload);
+    apiRouter.post('/users/login', userApi.login);
     //---
 
     var routes = require('../routes/index')(passport);

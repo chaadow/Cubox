@@ -1,13 +1,25 @@
 var LocalStrategy   = require('passport-local').Strategy
     ,BasicStrategy = require('passport-http').BasicStrategy
-    ,bcrypt   = require('bcrypt-nodejs');
+    ,bcrypt   = require('bcrypt-nodejs'),
+    fs = require('fs');
 
 
 var users = [
     { id: 1, username: 'cuboxadmin', password: 'cuboxpassword', email: 'cuboxadmin@cubox.com' }
     , { id: 2, username: 'cubox', password: 'cubox', email: 'cubox@cubox.com' }
 ];
-
+function ensureExists(path, mask, cb) {
+    if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+        cb = mask;
+        mask = 0777;
+    }
+    fs.mkdir(path, mask, function(err) {
+        if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+        } else cb(null); // successfully created folder
+    });
+}
 function findByUsername(username, fn) {
     for (var i = 0, len = users.length; i < len; i++) {
         var user = users[i];
@@ -115,14 +127,18 @@ console.log(" ENTER DESERIALIZE WITH ID: "+ id);
                                     if (err) throw err;
 
                                     newUserMysql.id = rows.insertId;
+                                    ensureExists('Uploads/'+newUserMysql.name+rows.insertId, 0744, function(err) {
+                                        if (err) throw err; // handle folder creation error
+                                       // else // we're all good
+                                    });
 
                                     return done(null, newUserMysql);
                                 });
                             }
 
                     });
+                    connection.release();
                 }
-                //connection.release();
             })
         }));
 
@@ -154,6 +170,10 @@ console.log(" ENTER DESERIALIZE WITH ID: "+ id);
                     }
                     console.log('helloMOTO');
                     // all is well, return successful user
+                    ensureExists('Uploads/'+rows[0]["name"]+rows[0]["id"], 0744, function(err) {
+                        if (err) throw err; // handle folder creation error
+                        // else // we're all good
+                    });
                     return done(null, rows[0]);
 
                 });

@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=1040" />
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Arvo:700" rel="stylesheet" type="text/css" />
 		<!--[if lte IE 8]><script src="/js/html5shiv.js"></script><![endif]-->
+        <script src="/socket.io/socket.io.js"></script>
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.dropotron.min.js"></script>
 		<script src="/js/config.js"></script>
@@ -19,6 +20,11 @@
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-desktop.css" />
 		</noscript>
+        <script>
+            var direcfiles = document.getElementById('filechedli');
+            direcfiles.innerHTML(<%= files%>);
+
+        </script>
 
 	</head>
 	<body class="homepage">
@@ -176,40 +182,42 @@
 								
 							<!-- Sidebar -->
 								<div id="sidebar" class="4u">
-								
+
 									<!-- Excerpts -->
 										<section>
 											<ul class="divided">
 												<li>
 
 													<!-- Excerpt -->
-														<article class="is-excerpt">
+														<article class="is-excerpt" id="filechedli">
 															<header>
 																<span id="uploadTrigger" class="button">ADD A FILE</span>
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
-															<ul>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 1</a>
-																		<ul>
-																			<li>
-																				File 1
-																			</li>
-																			<li>
-																				File 2
-																			</li>
-																			<li>
-																				File 3
-																			</li>
-																		</ul>
-																</li>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 2</a>
-																</li>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 3</a>
-																</li>
-															</ul>
+                                                            <%- files%>
+
+															<!--<ul>-->
+																<!--<li>-->
+																	<!--<a href="#" class="fa fa-folder folder" >Folder 1</a>-->
+																		<!--<ul>-->
+																			<!--<li>-->
+																				<!--File 1-->
+																			<!--</li>-->
+																			<!--<li>-->
+																				<!--File 2-->
+																			<!--</li>-->
+																			<!--<li>-->
+																				<!--File 3-->
+																			<!--</li>-->
+																		<!--</ul>-->
+																<!--</li>-->
+																<!--<li>-->
+																	<!--<a href="#" class="fa fa-folder folder" >Folder 2</a>-->
+																<!--</li>-->
+																<!--<li>-->
+																	<!--<a href="#" class="fa fa-folder folder" >Folder 3</a>-->
+																<!--</li>-->
+															<!--</ul>-->
 														</article>
 
 												</li>
@@ -325,5 +333,6 @@
 					</div>
 
 			</div>
+
 	</body>
 </html>

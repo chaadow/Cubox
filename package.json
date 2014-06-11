@@ -27,7 +27,9 @@
     "passport-local" : "~0.1.6",
     "connect-flash" : "~0.1.1",
     "bcrypt-nodejs" : "latest",
-      "sticky-session" :"latest"
+      "sticky-session" :"latest",
+      "http-proxy": "latest",
+      "underscore": "latest"
 
   }
 }

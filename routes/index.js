@@ -1,11 +1,128 @@
 var express = require('express');
 var router = express.Router();
-
+//var walk = require('walk');
 module.exports = function(passport){
 
     router.get('/', function(req, res) {
         console.log(req.user);
-        res.render('index.ejs', {user : req.user});
+
+
+            var fs = require('fs');
+//            var walk = function(dir, done) {
+//                var results = [];
+//                var content = '<li>';
+//                fs.readdir(dir, function(err, list) {
+//                    if (err) return done(err);
+//                    var i = 0;
+//                    (function next() {
+//                        var file = list[i++];
+//                        if (!file) return done(null, results, content);
+//                        file = dir + '/' + file;
+//                        fs.stat(file, function(err, stat) {
+//                            if (stat && stat.isDirectory()) {
+//                                content+= '<a href="#" class="fa fa-folder folder" >'+stat.name+'</a>';
+//                                content+=    '<ul>';
+//                                walk(file, function(err, res) {
+//                                    content+= '<li>'+res+'</li>';
+//                                    results = results.concat(res);
+//                                    next();
+//                                });
+//                            } else {
+//                                content+= '</ul>';
+//                                results.push(file);
+//                                next();
+//                            }
+//                        });
+//                    })();
+//                });
+//            };
+
+//    <li>
+//        <a href="#" class="fa fa-folder folder" >Folder 1</a>
+//        <ul>
+//            <li>
+//            File 1
+//            </li>
+//            <li>
+//            File 2
+//            </li>
+//            <li>
+//            File 3
+//            </li>
+//        </ul>
+//    </li>
+
+        var fs = require('fs');
+        var content='';
+        var walk = function(dir, done) {
+            var results = [];
+            //content+='<li>';
+            fs.readdir(dir, function(err, list) {
+
+                content+= '<a href="#" class="fa fa-folder folder" >'+dir+'</a>';
+                content+=    '<ul>';
+                if (err) return done(err);
+                var i = 0;
+                (function next() {
+                    var file = list[i++];
+                    if (!file) return done(null, results, content);
+                    file = dir + '/' + file;
+                    fs.stat(file, function(err, stat) {
+                        if (stat && stat.isDirectory()) {
+                            //content+= '<a href="#" class="fa fa-folder folder" >'+stat.name+'</a>';
+                            content+=    '<ul>';
+                            walk(file, function(err, res) {
+                                //content+= '<li>'+res+'</li>';
+                                content+= '</ul>';
+                                results = results.concat(res);
+                                next();
+                            });
+                            content+='</ul>';
+                        } else {
+                            content+= '<li>'+file+'</li>';
+
+                            results.push(file);
+                            next();
+                        }
+                        //content+= '</ul>';
+
+
+
+                    });
+                })();
+            });
+            //content+='<li>';
+
+        };
+            walk('public', function(err, results,contents) {
+                if (err) throw err;
+                //console.log(results);
+                console.log(contents);
+//                res.end(contents);
+                res.render('index.ejs', {user : req.user, files: contents});
+            });
+
+
+//        var walk    = require('walk');
+//        var files   = [];
+//
+//// Walker options
+//        var walker  = walk.walk('public', { followLinks: false });
+//
+//        walker.on('file', function(root, stat, next) {
+//            // Add this file to the list of files
+//            console.log
+//            files.push({file: root + '/' + stat.name, root: root});
+//
+//            next();
+//        });
+//
+//        walker.on('end', function() {
+//            console.log(files);
+//        });
+//        //res.end("hello");
+
+//        res.render('index.ejs', {user : req.user, files: files});
 
     });
 
