@@ -19,12 +19,17 @@
     "method-override": "*",
     "debug": "~0.7.4",
     "ejs": "~0.8.5",
+    "formidable": "latest",
+    "strong-cluster-connect-store": "latest",
     "passport" : "~0.1.17",
     "passport-http": "*",
-    "socket.io": "*",
+    "socket.io": "1.0",
     "passport-local" : "~0.1.6",
     "connect-flash" : "~0.1.1",
     "bcrypt-nodejs" : "latest",
-    "strong-cluster-connect-store": "latest"
+      "sticky-session" :"latest",
+      "http-proxy": "latest",
+      "underscore": "latest"
+
   }
 }

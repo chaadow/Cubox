@@ -17,9 +17,10 @@ exports.run = function route(auth, app, routes, passport){
     userApi = require('../routes/api/users');
 
     // User api routes.
-    apiRouter.get('/users/:id', auth, userApi.find);
-    apiRouter.post('/users', auth, userApi.ins);
-    apiRouter.put('/users/:id', auth, userApi.upd);
+    apiRouter.get('/users/:id', userApi.find);
+    apiRouter.post('/users', userApi.ins);
+    apiRouter.put('/users/:id', userApi.upd);
+    apiRouter.post('/users/login', userApi.login);
     //---
 
     var routes = require('../routes/index')(passport);

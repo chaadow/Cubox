@@ -6,8 +6,9 @@ exports.setup = function setup(app, conf, passport){
       , session = require('express-session')
       , flash    = require('connect-flash')
       , favicon = require('static-favicon')
-      , logger = require('morgan'),
-        ClusterStore = require('strong-cluster-connect-store')(session)
+      , logger = require('morgan')
+      , ClusterStore = require('strong-cluster-connect-store')(session)
+
       , cookieParser = require('cookie-parser')
       , bodyParser = require('body-parser')
       , pool    = mysql.createPool({
@@ -23,6 +24,7 @@ exports.setup = function setup(app, conf, passport){
 
     require('./passport')(passport, pool);
     app.use(favicon());
+
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
@@ -30,9 +32,12 @@ exports.setup = function setup(app, conf, passport){
     app.use(methodOverride());
     app.use(express.static(__dirname + '../public'));
     app.use(express.static(path.join(__dirname, '../public/')));
+
     app.use(session({
         store: new ClusterStore(),
         secret: "1234df"
+        //key: 'sid',
+        //cookie: {secure: false}
     }));
     app.use(passport.initialize());
     app.use(passport.session());
@@ -43,6 +48,14 @@ exports.setup = function setup(app, conf, passport){
 
 // development error handler
 // will print stacktrace
+
+        app.use(function(req, res, next) {
+            req.mysql   = pool;
+            req.cache   = require('memoizee');
+            req.store   = app.locals;
+            next();
+        });
+
     if (process.env.NODE_ENV === 'development') {
         app.use(function(err, req, res, next) {
             res.status(err.status || 500);
@@ -62,14 +75,6 @@ exports.setup = function setup(app, conf, passport){
             error: {}
         });
     });
-        app.use(function(req, res, next) {
-            req.mysql   = pool;
-            req.cache   = require('memoizee');
-            req.store   = app.locals;
-            next();
-        });
-
-
 
 
 };
