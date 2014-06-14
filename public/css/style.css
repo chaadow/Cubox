@@ -1267,9 +1267,9 @@
     25% {
         border-radius:50% 0 0 0;
         background:#00a5d2;
-        -webkit-transform-origin: rotate(45deg);
-        -moz-transform-origin: rotate(45deg);
-        -o-transform-origin: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
         transform:rotate(45deg);
         border: none;
 
@@ -1278,18 +1278,18 @@
         border-radius:50% 50% 0 0;
         background:#00bff3;
         transform:rotate(90deg);
-        -webkit-transform-origin: rotate(90deg);
-        -moz-transform-origin: rotate(90deg);
-        -o-transform-origin: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
         border: none;
     }
     75% {
         border-radius:50% 50% 50% 0;
         background:#09d3ff;
         transform:rotate(135deg);
-        -webkit-transform-origin: rotate(135deg);
-        -moz-transform-origin: rotate(135deg);
-        -o-transform-origin: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
         border: none;
     }
     100% {
@@ -1528,7 +1528,7 @@
 
     /**  Upload **/
 
-    #UploadBox {
+    .UploadBox {
         background: #FFF;
         padding: 20px;
         position: absolute;
@@ -1549,23 +1549,28 @@
         z-index: 1;
     }
 
-    #UploadBox h3{
+    .UploadBox h3{
         display: inline-block;
     }
-    #UploadBox #closePop {
+    .UploadBox .closePop {
         float: right;
         cursor: pointer;
     }
-    #UploadBox button {
+    .UploadBox button {
         float: right;
     }
 
-    #NameBox {
+    .NameBox {
         width: 88%;
         margin-bottom: 20px;
     }
-#ProgressContainer {
-    width: 396px;
+
+    .UploadBox label {
+        display: block;
+    }
+
+.ProgressContainer {
+    width: 100%;
     height: 36px;
     background: #F8F8F8;
     margin-top: 14px;
@@ -1578,7 +1583,7 @@
     padding: 2px;
 }
 
-#ProgressBar {
+.ProgressBar {
     height: 100%;
     width: 0%;
 
@@ -1586,4 +1591,30 @@
     -moz-border-radius: 4px;
     border-radius: 4px;
     background: -webkit-gradient(linear, left top, left bottom, from(#a50aad), color-stop(0.50, #6b0d6b), to(#4a074a));
+}
+
+#main.container {
+    max-height: 500px;
+    overflow: auto;
+}
+
+/** Profile **/
+
+#banner table {
+    text-transform: none;
+    text-align: center;
+}
+#banner table span,
+#banner p span{
+    color: #0097FA;
+    font-weight: bold;
+    font-size: 20px;
+}
+#banner p {
+    display: block;
+    width: 100%;
+}
+
+#banner p:first-child {
+    margin-bottom: 15px;
 }

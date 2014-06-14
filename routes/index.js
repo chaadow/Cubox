@@ -21,7 +21,7 @@ module.exports = function (passport) {
 
 
                     content+= '<form action="/add" method="POST">';
-                    content += '<a href="#" class="fa fa-folder folder" style="display: inline" >' + dir.substring(dir.lastIndexOf('/') + 1) + '</a>';
+                    content += '<a href="#" class="fa fa-folder folder" style="display: inline" >' + dir.substring(dir.lastIndexOf('\\') + 1) + '</a>';
                     content += '<a href="button" class="fa fa-plus">Add folder to '+path.basename(dir)+'</a>';
 
 
@@ -46,7 +46,7 @@ module.exports = function (passport) {
                             });
                             content += '</ul>';
                         } else {
-                            content += '<li class="filedownload" style="padding-left: 18px"> <a href="/download/' + file + '">' + file.substring(file.lastIndexOf('/') + 1) + '</a></li>';
+                            content += '<li class="filedownload" style="padding-left: 18px"> <a href="/download/' + file + '">' + file.substring(file.lastIndexOf('\\') + 1) + '</a></li>';
                             results.push(file);
                             next();
                         }
@@ -108,7 +108,7 @@ module.exports = function (passport) {
             res.render('signin.ejs', { message: req.flash('loginMessage') });
         })
         .post(passport.authenticate('local-login', {
-            successRedirect: '/profile', // redirect to the secure profile section
+            successRedirect: '/#banner', // redirect to the secure profile section
             failureRedirect: '/', // redirect back to the signup page if there is an error
             failureFlash: true // allow flash messages
         }));
