@@ -56,6 +56,7 @@ exports.on = function (io){
 //                                console.error(err);
 //                                socket.emit('Done', {'Image' : 'Uploads/' + Name + '.jpg'});
 //                            });
+                            socket.emit('Done', {'Image' : 'Uploads/' + Name + '.jpg'});
                         });
                     });
 //                    util.pump(inp, out, function(){

@@ -20,11 +20,7 @@
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-desktop.css" />
 		</noscript>
-        <script>
-            var direcfiles = document.getElementById('filechedli');
-            direcfiles.innerHTML(<%= files%>);
 
-        </script>
 
 	</head>
 	<body class="homepage">
@@ -36,11 +32,11 @@
 					<div id="header" class="container">
 						
 						<!-- Logo -->
-                            <!-- <div class="animatedlog"></div>
+                            <div class="animatedlog"></div>
                             <span class="lead left">CUB</span>
-                            <span class="lead right">X</span>-->
+                            <span class="lead right">X</span>
 
-							<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>
+							{#<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>#}
 							<p>Store, share & manage your files everytime & everywhere</p>
 						
 						<!-- Nav -->
@@ -162,12 +158,13 @@
                 <% }%>
                 <% if (user) {%>
                     <div class="row">
-                        <div class="profile-avatar">
-                            <div class="pentagon">
-
-                            </div>
-                            <a href="#"><img src="http://dl.dropboxusercontent.com/s/7pcnqq18skh1myk/avatar.jpg" alt="Anis M" /></a>
-                        </div>
+                        <p>Bienvenue <span>Victor Delaunay</span></p>
+                        <p>account: <span>MEMBOX</span></p>
+                        <table>
+                            <tr>
+                                <td>duration: <span>UNLIMITED</span></td><td>storage: <span>[NUM]/[NUM]</span></td><td>bandwitch: <span>500M</span></td><td>shared Links: <span>[NUM]/[NUM]</span></td>
+                            </tr>
+                        </table>
                     </div>
                 <% }%>
 			</div>
@@ -181,7 +178,7 @@
 						<div class="row">
 								
 							<!-- Sidebar -->
-								<div id="sidebar" class="4u">
+								<div id="sidebar" class="8u">
 
 									<!-- Excerpts -->
 										<section>
@@ -191,10 +188,13 @@
 													<!-- Excerpt -->
 														<article class="is-excerpt" id="filechedli">
 															<header>
-																<span id="uploadTrigger" class="button">ADD A FILE</span>
+																<span id="normalUploadTrigger" class="button">ADD A FILE</span>
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
-                                                            <%- files%>
+
+
+
+                                                                <ul> <%- files%> </ul>
 
 															<!--<ul>-->
 																<!--<li>-->
@@ -226,31 +226,44 @@
 								
 								</div>
 								
-								<div id="content" class="8u">
-                                    <div class="explorer">
-                                        <table>
-                                           <tr>
-                                                <th>File name</th><th>Size</th><th>Share</th><th>Actions</th>
-                                           </tr>
-                                            <tr class="odd">
-                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                        <div id="UploadBox" class="hide">
+								<!--<div id="content" class="4u">-->
+                                    <!--<div class="explorer">-->
+                                        <!--<table>-->
+                                           <!--<tr>-->
+                                                <!--<th>File name</th><th>Size</th><th>Share</th><th>Actions</th>-->
+                                           <!--</tr>-->
+                                            <!--<tr class="odd">-->
+                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
+                                            <!--</tr>-->
+                                            <!--<tr class="even">-->
+                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
+                                            <!--</tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                        <div id="nomalUpBox"class="UploadBox hide">
                                             <h3>File Uploader</h3>
-                                            <span id="closePop">X</span>
-                                                <div id='UploadArea'>
-                                                    <label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>
-                                                    <label for="NameBox">Name: </label><input type="text" id="NameBox"><br>
-                                                    <button type='button' id='UploadButton' class='button'>Upload</button>
+                                            <span class="closePop">X</span>
+                                                <div class='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                    <button type='button' class='UploadButton button'>Upload</button>
                                                 </div>
                                         </div>
-				
-								</div>
+
+                                        <div id="specificUpBox" class="UploadBox hide">
+                                            <h3>File Uploader</h3>
+                                            <span class="closePop">X</span>
+                                            <div class='UploadArea'>
+                                                <input type="checkbox"/>Add a folder
+                                                <input type="checkbox"/>Add a file
+                                                <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                <button type='button' class='UploadButton button'>Upload</button>
+                                            </div>
+                                        </div>
+
+				<!---->
+								<!--</div>-->
 
 						</div>
 					</div>
@@ -333,6 +346,31 @@
 					</div>
 
 			</div>
+<script>
+
+
+
+
+
+
+
+//    $('.filedownload').click(function () {
+//
+//
+//        var val = $(this).data('path');
+//       // $.get();
+//
+//
+//         $.get( '/download/'+val, function() {
+//
+//         });
+//
+//
+//
+//
+//    });
+
+</script>
 
 	</body>
 </html>
