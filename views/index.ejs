@@ -20,11 +20,7 @@
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-desktop.css" />
 		</noscript>
-        <script>
-            var direcfiles = document.getElementById('filechedli');
-            direcfiles.innerHTML(<%= files%>);
 
-        </script>
 
 	</head>
 	<body class="homepage">
@@ -181,7 +177,7 @@
 						<div class="row">
 								
 							<!-- Sidebar -->
-								<div id="sidebar" class="4u">
+								<div id="sidebar" class="8u">
 
 									<!-- Excerpts -->
 										<section>
@@ -194,7 +190,10 @@
 																<span id="uploadTrigger" class="button">ADD A FILE</span>
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
-                                                            <%- files%>
+
+
+
+                                                                <ul> <%- files%> </ul>
 
 															<!--<ul>-->
 																<!--<li>-->
@@ -226,20 +225,20 @@
 								
 								</div>
 								
-								<div id="content" class="8u">
-                                    <div class="explorer">
-                                        <table>
-                                           <tr>
-                                                <th>File name</th><th>Size</th><th>Share</th><th>Actions</th>
-                                           </tr>
-                                            <tr class="odd">
-                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+								<!--<div id="content" class="4u">-->
+                                    <!--<div class="explorer">-->
+                                        <!--<table>-->
+                                           <!--<tr>-->
+                                                <!--<th>File name</th><th>Size</th><th>Share</th><th>Actions</th>-->
+                                           <!--</tr>-->
+                                            <!--<tr class="odd">-->
+                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
+                                            <!--</tr>-->
+                                            <!--<tr class="even">-->
+                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
+                                            <!--</tr>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
                                         <div id="UploadBox" class="hide">
                                             <h3>File Uploader</h3>
                                             <span id="closePop">X</span>
@@ -249,8 +248,8 @@
                                                     <button type='button' id='UploadButton' class='button'>Upload</button>
                                                 </div>
                                         </div>
-				
-								</div>
+				<!---->
+								<!--</div>-->
 
 						</div>
 					</div>
@@ -333,6 +332,31 @@
 					</div>
 
 			</div>
+<script>
+
+
+
+
+
+
+
+//    $('.filedownload').click(function () {
+//
+//
+//        var val = $(this).data('path');
+//       // $.get();
+//
+//
+//         $.get( '/download/'+val, function() {
+//
+//         });
+//
+//
+//
+//
+//    });
+
+</script>
 
 	</body>
 </html>

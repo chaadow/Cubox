@@ -1,35 +1,35 @@
 {
-  "name": "Cubox",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "express": "~4.2.0",
-    "mysql": "latest",
-    "memoizee": "0.2.6",
-    "cloneextend": "*",
-    "static-favicon": "~1.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
-    "body-parser": "~1.0.0",
-    "express-session": "*",
-    "connect-flash" : "~0.1.1",
-    "method-override": "*",
-    "debug": "~0.7.4",
-    "ejs": "~0.8.5",
-    "formidable": "latest",
-    "strong-cluster-connect-store": "latest",
-    "passport" : "~0.1.17",
-    "passport-http": "*",
-    "socket.io": "1.0",
-    "passport-local" : "~0.1.6",
-    "connect-flash" : "~0.1.1",
-    "bcrypt-nodejs" : "latest",
-      "sticky-session" :"latest",
-      "http-proxy": "latest",
-      "underscore": "latest"
+    "name": "Cubox",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "forever start bin/www"
+    },
+    "dependencies": {
+        "express": "~4.2.0",
+        "mysql": "latest",
+        "memoizee": "0.2.6",
+        "cloneextend": "*",
+        "static-favicon": "~1.0.0",
+        "morgan": "~1.0.0",
+        "cookie-parser": "~1.0.1",
+        "body-parser": "~1.0.0",
+        "express-session": "*",
+        "connect-flash": "~0.1.1",
+        "method-override": "*",
+        "debug": "~0.7.4",
+        "ejs": "~0.8.5",
+        "formidable": "latest",
+        "strong-cluster-connect-store": "latest",
+        "passport": "~0.1.17",
+        "passport-http": "*",
+        "socket.io": "0.9.x",
+        "passport-local": "~0.1.6",
+        "connect-flash": "~0.1.1",
+        "bcrypt-nodejs": "latest",
+        "http-proxy": "latest",
+        "underscore": "latest",
+        "bytes": "latest"
 
-  }
+    }
 }

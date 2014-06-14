@@ -1,8 +1,8 @@
 var bcrypt   = require('bcrypt-nodejs');
 var formidable= require('formidable');
-formidable.IncomingForm.prototype.uploadDir = './Uploads';
+//formidable.IncomingForm.prototype.uploadDir = './Uploads';
 
-formidable.IncomingForm.prototype.keepExtensions = true;
+//formidable.IncomingForm.prototype.keepExtensions = true;
 
 var fs = require('fs');
 function ensureExists(path, mask, cb) {
@@ -17,6 +17,7 @@ function ensureExists(path, mask, cb) {
         } else cb(null); // successfully created folder
     });
 }
+
 
 exports.login = function(req, res){
 
@@ -160,7 +161,7 @@ exports.ins = function(req,res){
         } else {
             var salt = bcrypt.genSaltSync(8),
                 data = req.body;
-                data["Password"] = bcrypt.hashSync(data["Password"], salt); // bcrypt.compareSync("my password", hash); // true
+                data["password"] = bcrypt.hashSync(data["Password"], salt); // bcrypt.compareSync("my password", hash); // true
                 data.salt = salt;
                 console.log(data);
             connection.query('INSERT INTO users SET ?', data, function(err, result) {
@@ -213,7 +214,7 @@ exports.download = function(req, res){
     };
     console.log({
         file: file.name,
-        size: filesize(file.size)
+        size: file.size
     });
     quota = 102400;
     return fs.open(file.path, 'r', function(err, fd) {

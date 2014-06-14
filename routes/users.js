@@ -100,4 +100,34 @@ router.get('/payment', function(req, res){
    // res.end("hello");
 });
 
+//var fs = require('fs');
+//            var walk = function(dir, done) {
+//                var results = [];
+//                var content = '<li>';
+//                fs.readdir(dir, function(err, list) {
+//                    if (err) return done(err);
+//                    var i = 0;
+//                    (function next() {
+//                        var file = list[i++];
+//                        if (!file) return done(null, results, content);
+//                        file = dir + '/' + file;
+//                        fs.stat(file, function(err, stat) {
+//                            if (stat && stat.isDirectory()) {
+//                                content+= '<a href="#" class="fa fa-folder folder" >'+stat.name+'</a>';
+//                                content+=    '<ul>';
+//                                walk(file, function(err, res) {
+//                                    content+= '<li>'+res+'</li>';
+//                                    results = results.concat(res);
+//                                    next();
+//                                });
+//                            } else {
+//                                content+= '</ul>';
+//                                results.push(file);
+//                                next();
+//                            }
+//                        });
+//                    })();
+//                });
+//            };
+
 module.exports = router;

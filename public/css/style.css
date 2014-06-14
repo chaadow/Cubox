@@ -1564,3 +1564,26 @@
         width: 88%;
         margin-bottom: 20px;
     }
+#ProgressContainer {
+    width: 396px;
+    height: 36px;
+    background: #F8F8F8;
+    margin-top: 14px;
+    border: 1px solid #E8E8E8;
+    border-top: 1px solid #D8D8D8;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+#ProgressBar {
+    height: 100%;
+    width: 0%;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a50aad), color-stop(0.50, #6b0d6b), to(#4a074a));
+}

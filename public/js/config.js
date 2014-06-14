@@ -143,8 +143,9 @@ jQuery(function() {
 
     socket.on('Done', function (data){
         var Content = "File Successfully Uploaded !!"
-        Content += "<img id='Thumb' src='" + Path + data['Image'] + "' alt='" + Name + "'><br>";
-        Content += "<button	type='button' name='Upload' value='' id='Restart' class='Button'>Upload Another</button>";
+        //Content += "<img id='Thumb' src='" + Path + data['Image'] + "' alt='" + Name + "'><br>";
+        //Content += "<button	type='button' name='Upload' value='' id='Restart' class='Button'>Upload Another</button>";
+        Content += '<span id="Restart" class="button">Add another file</span>';
         document.getElementById('UploadArea').innerHTML = Content;
         document.getElementById('Restart').addEventListener('click', Refresh);
         document.getElementById('UploadBox').style.width = '270px';
@@ -153,7 +154,17 @@ jQuery(function() {
         document.getElementById('Restart').style.left = '20px';
     });
     function Refresh(){
-        location.reload(true);
+        //location.reload(true);
+        $('#UploadBox');
+        var content ='<h3>File Uploader</h3>'
+            +'<div id="UploadArea">'
+                +'<label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>'
+                +'<label for="NameBox">Name: </label><input type="text" id="NameBox"><br>'
+                  +'  <button type="button" id="UploadButton" class="button">Upload</button>'
+                +'</div>';
+
+
+        document.getElementById('UploadBox').innerHTML= content;
     }
 
 

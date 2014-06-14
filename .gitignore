@@ -1,2 +1,4 @@
 node_modules
-core/conf/index.js.idea
+core/conf/index.js
+.idea
+Uploads/*
