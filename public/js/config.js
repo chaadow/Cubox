@@ -67,12 +67,17 @@ jQuery(function() {
 		if (jQuery.browser.msie && jQuery.browser.version <= 9)
 			jQuery('form').n33_formerize();
 
-    $( "#uploadTrigger" ).click(function() {
-        $("#UploadBox").removeClass('hide');
+    $( "#normalUploadTrigger" ).click(function() {
+        $("#nomalUpBox").removeClass('hide');
     });
 
-    $( "#closePop" ).click(function() {
-        $("#UploadBox").addClass('hide');
+    $( ".specificUploadTrigger" ).click(function() {
+        $(".specificUpBox").removeClass('hide');
+    });
+
+    $( ".closePop" ).click(function() {
+        $("#nomalUpBox").addClass('hide');
+        $("#specificUpBox").addClass('hide');
     });
 
     window.addEventListener("load", Ready);
