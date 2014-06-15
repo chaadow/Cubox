@@ -83,6 +83,16 @@ jQuery(function() {
         $("#specificUpBox").addClass('hide');
     });
 
+    var folder = $(".folder");
+    folder.on("click",function(){
+        $(this).parent().find("ul:first").slideToggle();
+    })
+
+    var iconfolder = $(".foldercontainer .icon");
+    iconfolder.on("click",function(){
+        $(this).parent().find("ul:first").slideToggle();
+    })
+
     window.addEventListener("load", Ready);
 
     function Ready(){

@@ -32,22 +32,20 @@
 					<div id="header" class="container">
 						
 						<!-- Logo -->
-                            <!--<div class="animatedlog"></div>-->
-                            <!--<span class="lead left">CUB</span>-->
-                            <!--<span class="lead right">X</span>-->
-
-							<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>
+                            <div class="animatedlog"></div>
+                            <h1 class="lead">CUB<span>O</span>X</h1>
 							<p>Store, share & manage your files everytime & everywhere</p>
 						
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="fa fa-home" href="index.html"><span>Home</span></a></li>
-									
-									<li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li>
-									<li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li>
-									<li><a class="fa fa-cloud" href="#main-wrapper"><span>My cloud</span></a></li>
-									
+									<li><a class="fa fa-home" href="i/"><span>Home</span></a></li>
+                                    <% if (!user) {%><li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li><% }%>
+                                    <% if (!user) {%><li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li><% }%>
+                                    <% if (user) {%><li><a class="fa fa-user" href="#banner-wrapper"><span>Profile</span></a></li><% }%>
+                                    <% if (user) {%><li><a class="fa fa-cloud" href="#main-wrapper"><span>My cloud</span></a></li><% }%>
+                                    <li><a class="fa fa-pencil" href="#footer-wrapper"><span>Contact</span></a></li>
+
 								</ul>
 							</nav>
 
@@ -69,7 +67,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full basicoffer"></a>
+										<div class="animatedentity basicoffer"></div>
 										<header>
 											<h3>FREE	</h3>
 										</header>
@@ -84,7 +82,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full preniumoffer"></a>
+                                        <div class="animatedentity  preniumoffer"></div>
 										<header>
 											<h3>Membox</h3>
 										</header>
@@ -100,7 +98,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full prooffer"></a>
+										<div class="animatedentity prooffer"></div>
 										<header>
 											<h3>Enterprise</h3>
 										</header>
@@ -158,7 +156,7 @@
                 <% }%>
                 <% if (user) {%>
                     <div class="row">
-                        <p>Bienvenue <span>Victor Delaunay</span></p>
+                        <p>Bienvenue <span><%= user.username %></span></p>
                         <p>account: <span>MEMBOX</span></p>
                         <table>
                             <tr>
@@ -178,7 +176,7 @@
 						<div class="row">
 								
 							<!-- Sidebar -->
-								<div id="sidebar" class="8u">
+								<div id="sidebar" class="4u">
 
 									<!-- Excerpts -->
 										<section>
@@ -192,9 +190,6 @@
 																<h3><a href="#">Navigate through your folders</a></h3>
 															</header>
 
-
-                                                                 <%- files%>
-
 														</article>
 
 												</li>
@@ -203,20 +198,11 @@
 								
 								</div>
 								
-								<!--<div id="content" class="4u">-->
-                                    <!--<div class="explorer">-->
-                                        <!--<table>-->
-                                           <!--<tr>-->
-                                                <!--<th>File name</th><th>Size</th><th>Share</th><th>Actions</th>-->
-                                           <!--</tr>-->
-                                            <!--<tr class="odd">-->
-                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr class="even">-->
-                                                <!--<td>Nom du fichier</td><td>Poids en Kbs</td><td>[num]/[num] <a href="#">Shares</a></td><td><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></td>-->
-                                            <!--</tr>-->
-                                        <!--</table>-->
-                                    <!--</div>-->
+								<div id="content" class="8u">
+                                    <div class="explorer">
+                                        <%- files%>
+                                    </div>
+                                </div>
                                         <div id="nomalUpBox"class="UploadBox hide">
                                             <h3>File Uploader</h3>
                                             <span class="closePop">X</span>
@@ -231,7 +217,7 @@
                                             <h3>File Uploader</h3>
                                             <span class="closePop">X</span>
                                             <div class='UploadArea'>
-                                                <input type="checkbox name="/>Add a folder
+                                                <input type="checkbox" name=""/>Add a folder
                                                 <input type="checkbox"/>Add a file
                                                 <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
                                                 <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
@@ -286,9 +272,13 @@
 									<div class="row">
 										<ul class="icons 6u">
 											<li class="fa fa-home">
+                                                Tour Maine Montparnasse
+                                                40ème étage
+                                                33 avenue du Maine
+                                                75015 Paris
 											</li>
 											<li class="fa fa-phone">
-												0000000
+												0124561252
 											</li>
 											<li class="fa fa-envelope">
 												<a href="#">contact@cubox.fr</a>

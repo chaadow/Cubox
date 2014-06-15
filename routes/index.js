@@ -19,11 +19,12 @@ module.exports = function (passport) {
 
                 if (j > 1) {
 
-                    content += '<a href="#" class="fa fa-folder folder" style="display: inline" >' + path.basename(dir) + '</a>';
-                    content += '     <button style="padding-left:20px" class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></button>';
+                    content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
+                    content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></span>';
+                    content += '     <form><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
 
                 };
-                content += '<ul style="padding-left:28px; border-left:2px">';
+                content += '<ul class="foldercontent hide">';
                 if (err) return done(err);
                 var i = 0;
                 (function next() {
@@ -40,9 +41,9 @@ module.exports = function (passport) {
                                 results = results.concat(res);
                                 next();
                             });
-                            content += '</ul>';
+                            content += '</ul></div>';
                         } else {
-                            content += '<li class="filedownload" style="padding-left: 18px"> <a href="/download/' + file + '">' + path.basename(file) + '</a></li>';
+                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
                             results.push(file);
                             next();
                         }
