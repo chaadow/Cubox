@@ -965,9 +965,6 @@
 		background: #fff;
 		color: #fff;
 		text-align: center;
-		border-top: solid 2px #e5e5e5;
-		border-bottom: solid 2px #e5e5e5;
-		box-shadow: inset 0px -8px 0px 0px #fff, inset 0px -10px 0px 0px #e5e5e5, inset 0px 8px 0px 0px #fff, inset 0px 10px 0px 0px #e5e5e5;
 	}
 
 		#banner-wrapper .inner
@@ -1252,15 +1249,15 @@
 /* Hack victor                                                                    */
 /*********************************************************************************/
 .animatedlog {
-    width: 170px;
-    height: 170px;
-    margin: 10px auto;
+    width: 130px;
+    height: 130px;
+    margin: 8px auto;
     background-color: #2980b9;
     -webkit-animation: square-to-circle 4s 1s infinite cubic-bezier(1,.015,.295,1.225) alternate;
     -moz-animation: square-to-circle 4s 1s infinite cubic-bezier(1,.015,.295,1.225) alternate;
     position: absolute;
     z-index: 1;
-    margin-left: 693px;
+    margin-left: 668px;
 }
 @keyframes square-to-circle {
     25% {
@@ -1387,8 +1384,8 @@
     position: relative;
 }
 
-.lead.right{
-    margin-left: 250px;
+.lead span  {
+    color:transparent;
 }
 
 
@@ -1705,10 +1702,23 @@
     border-radius: 2px 2px 0 0;
 }
 
+.foldercontainer form button {
+    background:none!important;
+    border:none;
+    padding:0!important;
+    cursor: pointer;
+    color:rgb(206, 86, 86);
+}
+
+.foldercontainer form {
+    display: inline-block;
+}
+
 .specificUploadTrigger {
     font-size: 10px;
     margin-left: 20px;
     color: #00a5d2;
+    cursor: pointer;
 }
 
 .foldercontainer {

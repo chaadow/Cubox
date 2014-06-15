@@ -40,9 +40,9 @@
 							<nav id="nav">
 								<ul>
 									<li><a class="fa fa-home" href="i/"><span>Home</span></a></li>
-									
-									<li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li>
-									<li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li>
+                                    <% if (!user) {%><li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li><% }%>
+                                    <% if (!user) {%><li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li><% }%>
+                                    <% if (user) {%><li><a class="fa fa-user" href="#banner-wrapper"><span>Profile</span></a></li><% }%>
                                     <% if (user) {%><li><a class="fa fa-cloud" href="#main-wrapper"><span>My cloud</span></a></li><% }%>
                                     <li><a class="fa fa-pencil" href="#footer-wrapper"><span>Contact</span></a></li>
 
@@ -156,7 +156,7 @@
                 <% }%>
                 <% if (user) {%>
                     <div class="row">
-                        <p>Bienvenue <span>Victor Delaunay</span></p>
+                        <p>Bienvenue <span><%= user.username %></span></p>
                         <p>account: <span>MEMBOX</span></p>
                         <table>
                             <tr>

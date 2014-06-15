@@ -22,26 +22,35 @@
     <favorites_list name="Cubox" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48462784">
+    <splitter split-orientation="horizontal" split-proportion="0.47688752">
       <split-first>
         <leaf>
           <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/index.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="203" column="42" selection-start="7682" selection-end="7682" vertical-scroll-proportion="-41.192307" vertical-offset="2380" max-vertical-offset="5916">
+                <state line="40" column="36" selection-start="1381" selection-end="1381" vertical-scroll-proportion="114.42308" vertical-offset="3655" max-vertical-offset="5916">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="34" selection-start="981" selection-end="981" vertical-scroll-proportion="0.41210374" vertical-offset="190" max-vertical-offset="2550">
+                <state line="45" column="230" selection-start="2110" selection-end="2110" vertical-scroll-proportion="0.6315007" vertical-offset="340" max-vertical-offset="2567">
                   <folding>
-                    <marker date="1402843735289" expanded="true" signature="625:640" placeholder="..." />
-                    <marker date="1402843735289" expanded="false" signature="1311:1330" placeholder="..." />
+                    <marker date="1402847120865" expanded="true" signature="625:640" placeholder="..." />
+                    <marker date="1402847120865" expanded="false" signature="1424:1443" placeholder="..." />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="profile.ejs" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/profile.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="32" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="-7.8461537" vertical-offset="340" max-vertical-offset="1207">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -58,7 +67,7 @@
           <file leaf-file-name="style-desktop.css" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="288" column="22" selection-start="5460" selection-end="5460" vertical-scroll-proportion="-10.28" vertical-offset="4639" max-vertical-offset="6545">
+                <state line="120" column="53" selection-start="2007" selection-end="2007" vertical-scroll-proportion="-55.56" vertical-offset="651" max-vertical-offset="6545">
                   <folding />
                 </state>
               </provider>
@@ -77,10 +86,19 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/css/style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1710" column="18" selection-start="45378" selection-end="45378" vertical-scroll-proportion="0.3393124" vertical-offset="28843" max-vertical-offset="29852">
+                <state line="1720" column="20" selection-start="45404" selection-end="45404" vertical-scroll-proportion="0.9237668" vertical-offset="28622" max-vertical-offset="30022">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="dashboard.ejs" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/dashboard.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.2692308" vertical-offset="85" max-vertical-offset="3264">
                   <folding />
                 </state>
               </provider>
@@ -119,11 +137,11 @@
         <option value="$PROJECT_DIR$/core/conf/index.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/core/index.js" />
-        <option value="$PROJECT_DIR$/public/css/style-desktop.css" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/public/js/config.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/css/style-desktop.css" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -386,7 +404,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1953125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15494792" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -495,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="288" column="22" selection-start="5460" selection-end="5460" vertical-scroll-proportion="-10.28" vertical-offset="4639" max-vertical-offset="6545">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="28" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.5389049" vertical-offset="0" max-vertical-offset="694">
@@ -523,13 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="42" selection-start="7682" selection-end="7682" vertical-scroll-proportion="-41.192307" vertical-offset="2380" max-vertical-offset="5916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="93" column="6" selection-start="4908" selection-end="4908" vertical-scroll-proportion="-13.68" vertical-offset="1239" max-vertical-offset="3332">
@@ -537,20 +541,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/views/dashboard.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="34" selection-start="981" selection-end="981" vertical-scroll-proportion="0.41210374" vertical-offset="190" max-vertical-offset="2550">
-          <folding>
-            <marker date="1402843735289" expanded="true" signature="625:640" placeholder="..." />
-            <marker date="1402843735289" expanded="false" signature="1311:1330" placeholder="..." />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.2692308" vertical-offset="85" max-vertical-offset="3264">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style-desktop.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="53" selection-start="2007" selection-end="2007" vertical-scroll-proportion="-55.56" vertical-offset="651" max-vertical-offset="6545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/profile.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="-7.8461537" vertical-offset="340" max-vertical-offset="1207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="36" selection-start="1381" selection-end="1381" vertical-scroll-proportion="114.42308" vertical-offset="3655" max-vertical-offset="5916">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1710" column="18" selection-start="45378" selection-end="45378" vertical-scroll-proportion="0.3393124" vertical-offset="28843" max-vertical-offset="29852">
+        <state line="1720" column="20" selection-start="45404" selection-end="45404" vertical-scroll-proportion="0.9237668" vertical-offset="28622" max-vertical-offset="30022">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="230" selection-start="2110" selection-end="2110" vertical-scroll-proportion="0.6315007" vertical-offset="340" max-vertical-offset="2567">
+          <folding>
+            <marker date="1402847120865" expanded="true" signature="625:640" placeholder="..." />
+            <marker date="1402847120865" expanded="false" signature="1424:1443" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

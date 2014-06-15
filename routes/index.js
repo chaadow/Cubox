@@ -21,6 +21,7 @@ module.exports = function (passport) {
 
                     content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
                     content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></span>';
+                    content += '     <form><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
 
                 };
                 content += '<ul class="foldercontent hide">';
@@ -42,7 +43,7 @@ module.exports = function (passport) {
                             });
                             content += '</ul></div>';
                         } else {
-                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a></li>';
+                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
                             results.push(file);
                             next();
                         }
