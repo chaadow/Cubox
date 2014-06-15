@@ -123,7 +123,14 @@ function isAdmin(req, res, next) {
     res.redirect('/');
 
 }
-
+var logAndRespond = function logAndRespond(err,res,status){
+    console.error(err);
+    res.statusCode = ('undefined' === typeof status ? 500 : status);
+    res.send({
+        result: 'error',
+        err:    err.code
+    });
+};
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
@@ -140,5 +147,60 @@ function isNotLoggedIn(req, res, next) {
 }
 
 router.get('/dashboard', function (req, res) {
-    res.render('dashboard.ejs', {user: req.user});
+    var plans={};
+    var users= {};
+    var planStats=[];
+    req.mysql.getConnection(function(err,connection){
+        connection.query('SELECT * FROM plans ORDER BY id DESC', function handleSql(err, rows) {
+            if (err){ logAndRespond(err,res); return; }
+            if (rows.length === 0){ res.json(204); return; }
+
+
+            for(var i=0; i< rows.length; i++) {
+                console.log(rows[i]);
+                var hh = rows[i];
+                connection.query('SELECT * from users where choosen_plan=' + rows[i]['id'], function (err, results) {
+                    if (err) {
+                        logAndRespond(err, res);
+                        return;
+                    }
+                    planStats.push({name: hh['name'], count: results.length });
+                    //rows[i].count = results.length;
+                    console.log(planStats);
+                    console.log(results.length + 'helooo');
+
+                });
+            }
+            plans.rows= rows;
+            plans.length = rows.length;
+            //connection.release();
+        });
+        connection.query('SELECT * FROM users ORDER BY id DESC', function(err, rows) {
+
+            if (err) {
+                console.error(err);
+                res.statusCode = 500;
+                res.send({
+                    result: 'error',
+                    err:    err.code
+                });
+            } else {
+                if (rows.length === 0) {
+                    //res.statusCode = 204;
+                    users= {};
+                } else {
+
+                    users.count= rows.length;
+                    users.users = rows;
+                    console.log(planStats);
+                    res.render('dashboard.ejs', { plans: plans, users: users, planStat:planStats});
+                }
+            }
+        });
+
+
+        //res.render('dashboard.ejs', {user: req.user, plans: plans, users: users});
+
+    });
+
 });
