@@ -11,7 +11,10 @@ exports.on = function (io){
     io.sockets.on('connection', function (socket) {
         socket.on('Start', function (data) { //data contains the variables that we passed through in the html file
             var Name = data['Name'];
+
             console.log("hello");
+            console.log(Name);
+            console.log(data['Size']);
             Files[Name] = {  //Create a new Entry in The Files Variable
                 FileSize : data['Size'],
                 Data	 : "",

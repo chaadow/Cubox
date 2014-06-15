@@ -7,8 +7,8 @@ var _ = require('underscore');
 if (cluster.isMaster) {
     var cpuCount = require('os').cpus().length;
     require('strong-cluster-connect-store').setup();
-/**
-    var server = require('http').createServer();
+
+    /**var server = require('http').createServer();
     var io = require('socket.io').listen(server, { 'destroy buffer size': Infinity });
     var fs = require('fs');
 

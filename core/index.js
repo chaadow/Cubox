@@ -16,7 +16,7 @@ exports.init = function init() {
         console.log('Cubox %s listening on %d in %s', process.pid, conf.server.port, process.env.NODE_ENV);
     }), { 'destroy buffer size': Infinity });
 
-    /*var RedisStore = require('socket.io/lib/stores/redis');
+   /* var RedisStore = require('socket.io/lib/stores/redis');
     var redis = require('socket.io/node_modules/redis');
     io.set('store', new RedisStore({
         redisPub: redis.createClient(),
