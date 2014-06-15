@@ -5,7 +5,7 @@ exports.init = function init() {
         , express = require('express')
         , passport = require('passport')
         , app = express()
-        , conf = require('./conf').get("personal"); // Use 'personal' instead of 'process.env.NODE_ENV.
+        , conf = require('./conf').get("development"); // Use 'personal' instead of 'process.env.NODE_ENV.
 
     middleware.setup(app, conf, passport);
 
@@ -16,13 +16,13 @@ exports.init = function init() {
         console.log('Cubox %s listening on %d in %s', process.pid, conf.server.port, process.env.NODE_ENV);
     }), { 'destroy buffer size': Infinity });
 
-    /*var RedisStore = require('socket.io/lib/stores/redis');
+    var RedisStore = require('socket.io/lib/stores/redis');
     var redis = require('socket.io/node_modules/redis');
     io.set('store', new RedisStore({
         redisPub: redis.createClient(),
         redisSub: redis.createClient(),
         redisClient: redis.createClient()
-    }));*/
+    }));
     //io.disable('heartbeats');
     webSocketServer.on(io);
 

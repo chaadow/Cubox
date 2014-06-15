@@ -46,7 +46,8 @@ var tool = require('cloneextend'),
             port        : 3000
         }
 
-    }
+    };
+
     conf.defaults = {
 
         application:    {

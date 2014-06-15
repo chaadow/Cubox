@@ -19,14 +19,10 @@ module.exports = function (passport) {
 
                 if (j > 1) {
 
+                    content += '<a href="#" class="fa fa-folder folder" style="display: inline" >' + path.basename(dir) + '</a>';
+                    content += '     <button style="padding-left:20px" class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></button>';
 
-                    content+= '<form action="/add" method="POST">';
-                    content += '<a href="#" class="fa fa-folder folder" style="display: inline" >' + dir.substring(dir.lastIndexOf('\\') + 1) + '</a>';
-                    content += '<a href="button" class="fa fa-plus">Add folder to '+path.basename(dir)+'</a>';
-
-
-                    content+= '</form>'
-                }
+                };
                 content += '<ul style="padding-left:28px; border-left:2px">';
                 if (err) return done(err);
                 var i = 0;
@@ -46,7 +42,7 @@ module.exports = function (passport) {
                             });
                             content += '</ul>';
                         } else {
-                            content += '<li class="filedownload" style="padding-left: 18px"> <a href="/download/' + file + '">' + file.substring(file.lastIndexOf('\\') + 1) + '</a></li>';
+                            content += '<li class="filedownload" style="padding-left: 18px"> <a href="/download/' + file + '">' + path.basename(file) + '</a></li>';
                             results.push(file);
                             next();
                         }

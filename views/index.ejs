@@ -32,11 +32,11 @@
 					<div id="header" class="container">
 						
 						<!-- Logo -->
-                            <div class="animatedlog"></div>
-                            <span class="lead left">CUB</span>
-                            <span class="lead right">X</span>
+                            <!--<div class="animatedlog"></div>-->
+                            <!--<span class="lead left">CUB</span>-->
+                            <!--<span class="lead right">X</span>-->
 
-							{#<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>#}
+							<h1 id="logo"><img src="/images/logo.png" title="Cubox" alt="Cubox"></h1>
 							<p>Store, share & manage your files everytime & everywhere</p>
 						
 						<!-- Nav -->
@@ -193,31 +193,8 @@
 															</header>
 
 
+                                                                 <%- files%>
 
-                                                                <ul> <%- files%> </ul>
-
-															<!--<ul>-->
-																<!--<li>-->
-																	<!--<a href="#" class="fa fa-folder folder" >Folder 1</a>-->
-																		<!--<ul>-->
-																			<!--<li>-->
-																				<!--File 1-->
-																			<!--</li>-->
-																			<!--<li>-->
-																				<!--File 2-->
-																			<!--</li>-->
-																			<!--<li>-->
-																				<!--File 3-->
-																			<!--</li>-->
-																		<!--</ul>-->
-																<!--</li>-->
-																<!--<li>-->
-																	<!--<a href="#" class="fa fa-folder folder" >Folder 2</a>-->
-																<!--</li>-->
-																<!--<li>-->
-																	<!--<a href="#" class="fa fa-folder folder" >Folder 3</a>-->
-																<!--</li>-->
-															<!--</ul>-->
 														</article>
 
 												</li>
@@ -254,7 +231,7 @@
                                             <h3>File Uploader</h3>
                                             <span class="closePop">X</span>
                                             <div class='UploadArea'>
-                                                <input type="checkbox"/>Add a folder
+                                                <input type="checkbox name="/>Add a folder
                                                 <input type="checkbox"/>Add a file
                                                 <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
                                                 <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
