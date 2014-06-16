@@ -43,7 +43,8 @@ var deleteFolder = function (path, rootPath) {
 exports.createDirectory = function(req, res){
 
 ensureExists(req.body.path, 0744, function(err){
-
+      if(err) console.error(err);
+    res.send({result: "successfully created", files:traverseFileSystem(req.body.path)});
 });
 
 };
@@ -65,7 +66,7 @@ exports.copy = function(req, res){
     fse.copy(req.body.source, req.body.destination, function(err){
         if (err) return console.error(err);
         console.log("success!");
-        res.send({result: "successfully copied."});
+        res.send({result: "successfully created", files:traverseFileSystem(req.body.destination)});
     }); //copies directory, even if it has subdirectories or files
 };
 exports.deleteFile = function (req, res) {

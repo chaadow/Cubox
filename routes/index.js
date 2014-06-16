@@ -33,11 +33,10 @@ module.exports = function (passport) {
         fs.unlink(path, function (err) {
             if (err) res.send({result: err});
             console.log('successfully deleted ' + path);
-
-
             res.redirect('/');
         });
     });
+
     var deleteFolder = function (path) {
         var files = [];
         if (fs.existsSync(path)) {
@@ -65,89 +64,36 @@ module.exports = function (passport) {
     router.get('/', function (req, res) {
         var j = 0;
         var count =0;
-    var content='';
-//        var walk = function (dir, done) {
-//            var results = [];
-//            //content+='<li>';
-//
-//            fs.readdir(dir, function (err, list) {
-//                j++;
-//
-//                if (j > 1) {
-//
-//                    content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
-//                    content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></span>';
-//                    content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="'+dir+'"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
-//
-//                };
-//                content += '<ul class="foldercontent hide">';
-//                if (err) return done(err);
-//                var i = 0;
-//                (function next() {
-//                    var file = list[i++];
-//                    if (!file) return done(null, results, content);
-//                    file = path.resolve(dir, file);
-//
-//                    fs.stat(file, function (err, stat) {
-//                        if (stat && stat.isDirectory()) {
-//                            content += '<ul style="padding-left= 28px;">';
-//                            //content += '<a href="button" class="fa fa-plus">Add '+file+'</a>';
-//                            walk(file, function (err, res) {
-//                                content += '</ul>';
-//                                results = results.concat(res);
-//                                next();
-//                            });
-//                            content += '</ul></div>';
-//                        } else {
-//                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="'+file+'" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
-//                            results.push(file);
-//                            next();
-//                        }
-//                    });
-//                })();
-//            });
-//
-//
-//        };
-//
-//
-//        walk('Uploads', function (err, results, contents) {
-//            if (err) throw err;
-//            //console.log(results);
-//            console.log(contents);
-////                res.end(contents);
-//            res.render('index.ejs', {user: req.user, files: contents});
-//        });
-
         var fs = require('fs');
         var content='';
         var j =0;
         var traverseFileSystem = function (currentPath) {
 
-                content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(currentPath) + '</span>';
-                console.log(currentPath);
-                content += '<ul class="foldercontent hide">';
-                var files = fs.readdirSync(currentPath);
-                for (var i in files) {
-                    var currentFile = currentPath + '/' + files[i];
-                    var stats = fs.statSync(currentFile);
-                    if (stats.isFile()) {
-                        content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + currentFile + '">' + path.basename(currentFile) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="' + currentFile + '" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
-                        console.log(currentFile);
-                    }
-                    else if (stats.isDirectory()) {
-                        //content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
-                        traverseFileSystem(currentFile);
-                    }
+            content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(currentPath) + '</span>';
+            content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="' + currentPath + '"></span>';
+            content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="' + currentPath + '"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
+            console.log(currentPath);
+            content += '<ul class="foldercontent hide">';
+            var files = fs.readdirSync(currentPath);
+            for (var i in files) {
+                var currentFile = currentPath + '/' + files[i];
+                var stats = fs.statSync(currentFile);
+                if (stats.isFile()) {
+                    content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + currentFile + '">' + path.basename(currentFile) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="' + currentFile + '" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
+                    console.log(currentFile);
                 }
-                content += '</ul>';
-                content += '</div>';
+                else if (stats.isDirectory()) {
+                    //content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
+                    traverseFileSystem(currentFile);
+                }
+            }
+            content += '</ul>';
+            content += '</div>';
 
         };
 
 
-
-        traverseFileSystem('Public');
+    if(req.isAuthenticated())    traverseFileSystem('Uploads/'+req.user.name+req.user.id);
 
         res.render('index.ejs', {user: req.user, files: content});
 

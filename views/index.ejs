@@ -39,7 +39,7 @@
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="fa fa-home" href="i/"><span>Home</span></a></li>
+									<li><a class="fa fa-home" href="/"><span>Home</span></a></li>
                                     <% if (!user) {%><li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li><% }%>
                                     <% if (!user) {%><li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li><% }%>
                                     <% if (user) {%><li><a class="fa fa-user" href="#banner-wrapper"><span>Profile</span></a></li><% }%>
@@ -136,9 +136,9 @@
 						<div class="6u">
                             <form id="banner-subscribe" name="banner-subscribe" action="/signup" method="post" >
                                 <div class="first row">
-                                    <input type="radio" name="offer-choice-classic" checked="checked">FREE
-                                    <input type="radio" name="offer-choice-membox">MEMBOX
-                                    <input type="radio" name="offer-choice-enterprise">ENTERPRISE
+                                    <input type="radio" id="hellohi" name="choice" checked="checked">FREE
+                                    <input type="radio" id="hellohi" name="choice">MEMBOX
+                                    <input type="radio" id="hellohi" name="choice">ENTERPRISE
                                 </div>
                                 <div class="row">
                                     <input type="text" class="left-align" name="name" placeholder="Your name..." required/>
@@ -169,6 +169,7 @@
 		</div>
 
 		<!-- Main Wrapper -->
+        <%if (user){ %>
 			<div id="main-wrapper">
 
 				<!-- Main -->
@@ -236,6 +237,7 @@
 					</div>
 
 			</div>
+        <%}%>
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
