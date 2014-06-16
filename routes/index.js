@@ -16,7 +16,7 @@ module.exports = function (passport) {
         var type= req.body.p;
 
         if (type==='folder'){
-            ensureExists('Uploads/'+req.user.name+req.user.id+'/'+req.body.p, 0744, function(err) {
+            ensureExists(req.body.path+'/'+req.body.new, 0744, function(err) {
                 if (err) throw err; // handle folder creation error
                 // else // we're all good
             });

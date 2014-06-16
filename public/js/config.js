@@ -72,7 +72,10 @@ jQuery(function() {
     });
 
     $( ".specificUploadTrigger" ).on('click', function() {
+
         $("#specificUpBox").toggleClass('hide');
+        var hello = ($(this).data('folder'));
+        $('#yohoho').val(hello);
 
     });
 
