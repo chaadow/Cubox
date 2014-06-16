@@ -64,6 +64,7 @@ module.exports = function (passport) {
     router.get('/', function (req, res) {
         var j = 0;
         var count =0;
+
         var fs = require('fs');
         var content='';
         var j =0;
