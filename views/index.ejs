@@ -15,6 +15,7 @@
 		<script src="/js/config.js"></script>
 		<script src="/js/skel.min.js"></script>
 		<script src="/js/skel-panels.min.js"></script>
+		<script src="/js/dropzonejs.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="/css/skel-noscript.css" />
 			<link rel="stylesheet" href="/css/style.css" />
@@ -186,14 +187,52 @@
 													<!-- Excerpt -->
 														<article class="is-excerpt" id="filechedli">
 															<header>
-																<span id="normalUploadTrigger" class="button">ADD A FILE</span>
-																<h3><a href="#">Navigate through your folders</a></h3>
+                                                                <h3>Navigate through your folders</h3>
+                                                                <span id="normalUploadTrigger" class="button">ADD A FILE</span>
+                                                                <!-- <span id="normalUploadFoldTrigger" class="button">ADD A FOLDER</span> -->
+
 															</header>
 
 														</article>
-
 												</li>
 											</ul>
+                                            <div id="formAddFold">
+                                                <h3>Add folder</h3>
+                                                <div class='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                    <button type='button' class='CreateButton button'>Create</button>
+
+                                                </div>
+                                            </div>
+
+                                            <div id="nomalUpBox"class="UploadBox hide">
+                                                <h3>File Uploader</h3>
+                                                <span class="closePop">X</span>
+                                                <div class='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                    <form action="/Uploads" class="dropzone" id="normalUpDrop"></form>
+                                                    <button type='button' class='UploadButton button'>Upload</button>
+                                                </div>
+                                            </div>
+
+                                            <div id="specificUpBox" class="UploadBox hide">
+                                                <h3>File Uploader</h3>
+                                                <span class="closePop">X</span>
+                                                <div class='UploadArea'>
+
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+
+                                                    <form action="/add" method="POST">
+                                                        <input type="radio" name="p" value="folder"/>Add a folder
+                                                        <input type="radio" name="p" value="file" />Add a file
+                                                        <label for="NameBox">Name: </label><input type="text" name="new" class="NameBox"><br>
+                                                        <button type='submit' class='UploadButton button'>Upload</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
 										</section>
 								
 								</div>
@@ -203,31 +242,7 @@
                                         <%- files%>
                                     </div>
                                 </div>
-                                        <div id="nomalUpBox"class="UploadBox hide">
-                                            <h3>File Uploader</h3>
-                                            <span class="closePop">X</span>
-                                                <div class='UploadArea'>
-                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
-                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
-                                                    <button type='button' class='UploadButton button'>Upload</button>
-                                                </div>
-                                        </div>
 
-                                        <div id="specificUpBox" class="UploadBox hide">
-                                            <h3>File Uploader</h3>
-                                            <span class="closePop">X</span>
-                                            <div class='UploadArea'>
-
-                                                <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
-
-                                                <form action="/add" method="POST">
-                                                    <input type="radio" name="p" value="folder"/>Add a folder
-                                                    <input type="radio" name="p" value="file" />Add a file
-                                                    <label for="NameBox">Name: </label><input type="text" name="new" class="NameBox"><br>
-                                                    <button type='submit' class='UploadButton button'>Upload</button>
-                                                </form>
-                                            </div>
-                                        </div>
 
 				<!---->
 								<!--</div>-->

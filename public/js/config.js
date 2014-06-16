@@ -72,8 +72,6 @@ jQuery(function() {
     });
 
     $( ".specificUploadTrigger" ).on('click', function() {
-        console.log($(this).data('folder'));
-
         $("#specificUpBox").toggleClass('hide');
 
     });
