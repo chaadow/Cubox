@@ -75,7 +75,7 @@ module.exports = function (passport) {
 
                 if (j > 1) {
 
-                    content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
+                    content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span></div>';
                     content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></span>';
                     content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="'+dir+'"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
 
@@ -99,7 +99,7 @@ module.exports = function (passport) {
                             });
                             content += '</ul></div>';
                         } else {
-                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="'+file+'" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
+                            content +='<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="'+file+'" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
                             results.push(file);
                             next();
                         }
