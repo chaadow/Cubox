@@ -12,11 +12,11 @@ var deleteFolder = function (path) {
 module.exports = function (passport) {
 
 
-    router.post('/add', function(req,res){
+    router.post('/add', isLoggedIn, function(req,res){
         var type= req.body.p;
 
         if (type==='folder'){
-            ensureExists('Uploads/'+req.body.p, 0744, function(err) {
+            ensureExists('Uploads/'+req.user.name+req.user.id+'/'+req.body.p, 0744, function(err) {
                 if (err) throw err; // handle folder creation error
                 // else // we're all good
             });
