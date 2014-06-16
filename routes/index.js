@@ -110,6 +110,7 @@ module.exports = function (passport) {
 
         };
 
+
         walk('Uploads', function (err, results, contents) {
             if (err) throw err;
             //console.log(results);

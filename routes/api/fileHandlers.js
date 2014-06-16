@@ -40,6 +40,26 @@ var deleteFolder = function (path, rootPath) {
 
 };
 
+exports.createDirectory = function(req, res){
+
+ensureExists(req.body.path, 0744, function(err){
+
+});
+
+};
+
+function ensureExists(path, mask, cb) {
+    if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+        cb = mask;
+        mask = 0777;
+    }
+    fs.mkdir(path, mask, function(err) {
+        if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+        } else cb(null); // successfully created folder
+    });
+}
 exports.copy = function(req, res){
 
     fse.copy(req.body.source, req.body.destination, function(err){
@@ -52,7 +72,7 @@ exports.deleteFile = function (req, res) {
 
     var rootPath = req.body.mainpath;
     var path = req.body.path;
-    if ('' === path) res.send({ 'error': "please provide the path"})
+    if ('' === path) res.send({ 'error': "please provide the path"});
     fs.unlink(path, function (err) {
         if (err) res.send({result: err});
         console.log('successfully deleted ' + path);

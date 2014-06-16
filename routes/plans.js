@@ -42,24 +42,24 @@
 //        connection.release();
 //    });
 //}
-//function handleFind(connection,req,res) {
-//    var find = function find(id){
-//        connection.query('SELECT * FROM plans WHERE id = ?', id, function handleSql(err, rows) {
-//            if (err){ logAndRespond(err,res); return; }
-//            if (rows.length === 0){ res.send(204); return; }
-//            res.send({
-//                result: 'success',
-//                err:    '',
-//                id:     id,
-//                json:   rows[0],
-//                length: 1
-//            });
-//            connection.release();
-//        });
-//    };
-//    var cacheFind = req.cache(find, { async: true, maxAge: 1000*60, preFetch: true });
-//    cacheFind(req.params.id);
-//}
+function handleFind(connection,req,res) {
+    var find = function find(id){
+        connection.query('SELECT * FROM plans WHERE id = ?', id, function handleSql(err, rows) {
+            if (err){ logAndRespond(err,res); return; }
+            if (rows.length === 0){ res.send(204); return; }
+            res.send({
+                result: 'success',
+                err:    '',
+                id:     id,
+                json:   rows[0],
+                length: 1
+            });
+            connection.release();
+        });
+    };
+    var cacheFind = req.cache(find, { async: true, maxAge: 1000*60, preFetch: true });
+    cacheFind(req.params.id);
+}
 //function handleIns(connection,req,res) {
 //    connection.query('INSERT INTO plans SET ?', req.body, function handleSql(err, result) {
 //        if (err){ logAndRespond(err,res); return; }
