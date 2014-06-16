@@ -1,19 +1,75 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var fs = require('fs');
 //var walk = require('walk');
 
 
+
+var deleteFolder = function (path) {
+
+};
 module.exports = function (passport) {
 
+
+    router.post('/add', function(req,res){
+        var type= req.body.p;
+
+        if (type==='folder'){
+            ensureExists('Uploads/'+req.body.p, 0744, function(err) {
+                if (err) throw err; // handle folder creation error
+                // else // we're all good
+            });
+
+        }
+        res.redirect('/')
+
+
+    });
+
+    router.post('/deleteFile',function(req,res){
+
+       var path = req.body.path;
+        fs.unlink(path, function (err) {
+            if (err) res.send({result: err});
+            console.log('successfully deleted ' + path);
+
+
+            res.redirect('/');
+        });
+    });
+    var deleteFolder = function (path) {
+        var files = [];
+        if (fs.existsSync(path)) {
+            files = fs.readdirSync(path);
+            files.forEach(function (file, index) {
+                var curPath = path + "/" + file;
+                if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                    deleteFolder(curPath);
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+            //return {result: "Deleted successfully", files: traverseFileSystem(rootPath) };
+        }
+
+    };
+    router.post('/deleteFolder', function(req,res){
+       var path= req.body.path;
+        deleteFolder(path);
+
+
+        res.redirect('/');
+    });
     router.get('/', function (req, res) {
-        var fs = require('fs');
-        var content = '';
         var j = 0;
         var count =0;
+    var content='';
         var walk = function (dir, done) {
             var results = [];
             //content+='<li>';
+
             fs.readdir(dir, function (err, list) {
                 j++;
 
@@ -21,7 +77,7 @@ module.exports = function (passport) {
 
                     content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(dir) + '</span>';
                     content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="'+dir+'"></span>';
-                    content += '     <form><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
+                    content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="'+dir+'"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
 
                 };
                 content += '<ul class="foldercontent hide">';
@@ -43,7 +99,7 @@ module.exports = function (passport) {
                             });
                             content += '</ul></div>';
                         } else {
-                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
+                            content += '<li class="filedownload"><div class="fileicon"></div><a href="/download/' + file + '">' + path.basename(file) + '</a><form method="POST" action="/deleteFile"><input type="hidden" name="path" value="'+file+'" /><button type="submit"><i class="fa fa-trash-o"></i></button></form></li>';
                             results.push(file);
                             next();
                         }
@@ -53,7 +109,8 @@ module.exports = function (passport) {
 
 
         };
-        walk('public', function (err, results, contents) {
+
+        walk('Uploads', function (err, results, contents) {
             if (err) throw err;
             //console.log(results);
             console.log(contents);
@@ -154,7 +211,7 @@ router.get('/dashboard', function (req, res) {
     req.mysql.getConnection(function(err,connection){
         connection.query('SELECT * FROM plans ORDER BY id DESC', function handleSql(err, rows) {
             if (err){ logAndRespond(err,res); return; }
-            if (rows.length === 0){ res.json(204); return; }
+            //if (rows.length === 0){ res.json(204); return; }
 
 
             for(var i=0; i< rows.length; i++) {
@@ -205,3 +262,17 @@ router.get('/dashboard', function (req, res) {
     });
 
 });
+
+
+function ensureExists(path, mask, cb) {
+    if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+        cb = mask;
+        mask = 0777;
+    }
+    fs.mkdir(path, mask, function(err) {
+        if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+        } else cb(null); // successfully created folder
+    });
+}

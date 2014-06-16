@@ -1,4 +1,5 @@
 var fs = require('fs');
+var fse= require('fs-extra');
 
 var traverseFileSystem = function (currentPath) {
     console.log(currentPath);
@@ -39,7 +40,14 @@ var deleteFolder = function (path, rootPath) {
 
 };
 
+exports.copy = function(req, res){
 
+    fse.copy(req.body.source, req.body.destination, function(err){
+        if (err) return console.error(err);
+        console.log("success!");
+        res.send({result: "successfully copied."});
+    }); //copies directory, even if it has subdirectories or files
+};
 exports.deleteFile = function (req, res) {
 
     var rootPath = req.body.mainpath;

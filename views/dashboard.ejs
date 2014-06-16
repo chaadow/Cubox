@@ -108,7 +108,7 @@
                 <% plans.rows.forEach(function(plan){ %>
                 <tr>
                     <td><%=plan.name%></td>
-                    <td><%=plan.count%></td>
+                    <td><%=plan.price%></td>
                     <td><%=plan.storage_space%></td>
                     <td><a href="#">delete</a></td>
                 </tr>
@@ -132,12 +132,12 @@
         <div class="box">
             <h2>ADD new pricing plan</h2>
 
-            <form action="/plans" method="post">
+            <form action="/api/plans" method="post">
                 <p>
                     <label for="title">NAME
                         <small>Pricing plan name (alpha num only).</small>
                     </label>
-                    <input type="text" name="title"/>
+                    <input type="text" name="name"/>
                 </p>
                 <p>
                     <label for="price">Price
@@ -149,31 +149,31 @@
                     <label for="desc">Description
                         <small>(less than 200 cars.)</small>
                     </label>
-                    <textarea name="desc"></textarea>
+                    <textarea name="description"></textarea>
                 </p>
                 <p>
                     <label for="storage">Storage
                         <small>place in Go</small>
                     </label>
-                    <input type="number" name="storage"/>
+                    <input type="number" name="storage_space"/>
                 </p>
                 <p>
                     <label for="max-up">UP Speed
                         <small>Kbps</small>
                     </label>
-                    <input type="number" name="max-up"/>
+                    <input type="number" name="max_up"/>
                 </p>
                 <p>
                     <label for="max-down">DOWN Speed
                         <small>Kbps</small>
                     </label>
-                    <input type="number" name="max-down"/>
+                    <input type="number" name="max_down"/>
                 </p>
                 <p>
                     <label for="share-links">Share links
                         <small>number of share links</small>
                     </label>
-                    <input type="number" name="share-links"/>
+                    <input type="number" name="shared_link_quota"/>
                 </p>
                 <p>
                     <input type="submit" value="ADD"/>

@@ -156,11 +156,11 @@
                 <% }%>
                 <% if (user) {%>
                     <div class="row">
-                        <p>Bienvenue <span><%= user.username %></span></p>
+                        <p>Bienvenue <span><%= user.name %></span></p>
                         <p>account: <span>MEMBOX</span></p>
                         <table>
                             <tr>
-                                <td>duration: <span>UNLIMITED</span></td><td>storage: <span>[NUM]/[NUM]</span></td><td>bandwitch: <span>500M</span></td><td>shared Links: <span>[NUM]/[NUM]</span></td>
+                                <td>duration: <span>UNLIMITED</span></td><td>storage: <span>0/5</span></td><td>bandwitch: <span>500M</span></td><td>shared Links: <span>[NUM]/[NUM]</span></td>
                             </tr>
                         </table>
                     </div>
@@ -217,11 +217,15 @@
                                             <h3>File Uploader</h3>
                                             <span class="closePop">X</span>
                                             <div class='UploadArea'>
-                                                <input type="checkbox" name=""/>Add a folder
-                                                <input type="checkbox"/>Add a file
+
                                                 <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
-                                                <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
-                                                <button type='button' class='UploadButton button'>Upload</button>
+
+                                                <form action="/add" method="POST">
+                                                    <input type="radio" name="p" value="folder"/>Add a folder
+                                                    <input type="radio" name="p" value="file" />Add a file
+                                                    <label for="NameBox">Name: </label><input type="text" name="new" class="NameBox"><br>
+                                                    <button type='submit' class='UploadButton button'>Upload</button>
+                                                </form>
                                             </div>
                                         </div>
 
