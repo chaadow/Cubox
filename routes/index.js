@@ -68,14 +68,19 @@ module.exports = function (passport) {
         var fs = require('fs');
         var content='';
         var j =0;
+        var oldPath ='';
+            if (req.isAuthenticated()) oldPath='Uploads/'+req.user.name+req.user.id;
         var traverseFileSystem = function (currentPath) {
 
-            content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(currentPath) + '</span>';
-            content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="' + currentPath + '"></span>';
-            content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="' + currentPath + '"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
-            console.log(currentPath);
-            content += '<ul class="foldercontent hide">';
-            var files = fs.readdirSync(currentPath);
+                if (currentPath!== oldPath) {
+                    content += '<div class="foldercontainer"><div class="icon"></div><span class="folder" style="display: inline" >' + path.basename(currentPath) + '</span>';
+                    content += '     <span class="fa fa-plus specificUploadTrigger" data-folder="' + currentPath + '"></span>';
+                    content += '     <form method="POST" action="/deleteFolder"><input type="hidden" name="path" value="' + currentPath + '"/><button type="submit"><i class="fa fa-trash-o"></i></button></form>';
+                    console.log(currentPath);
+                    content += '<ul class="foldercontent hide">';
+                };
+
+                var files = fs.readdirSync(currentPath);
             for (var i in files) {
                 var currentFile = currentPath + '/' + files[i];
                 var stats = fs.statSync(currentFile);
