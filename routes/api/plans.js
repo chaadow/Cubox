@@ -48,11 +48,7 @@ function handleIns(connection,req,res) {
     connection.query('INSERT INTO plans SET ?', req.body, function handleSql(err, result) {
         if (err){ logAndRespond(err,res); return; }
         res.statusCode = 201;
-        res.send({
-            result: 'success',
-            err:    '',
-            id:     result.insertId
-        });
+        res.redirect('/dashboard');
         connection.release();
     });
 }

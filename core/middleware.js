@@ -23,7 +23,7 @@ exports.setup = function setup(app, conf, passport){
     app.set('view engine', 'ejs');
 
     require('./passport')(passport, pool);
-    app.use(favicon());
+    app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
