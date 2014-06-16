@@ -112,6 +112,7 @@ jQuery(function() {
 
     function FileChosen(evnt) {
         SelectedFile = evnt.target.files[0];
+        console.log(SelectedFile.name);
         $('.NameBox').val(  SelectedFile.name);
     }
 
