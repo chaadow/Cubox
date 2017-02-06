@@ -9,16 +9,19 @@
 		<meta name="viewport" content="width=1040" />
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Arvo:700" rel="stylesheet" type="text/css" />
 		<!--[if lte IE 8]><script src="/js/html5shiv.js"></script><![endif]-->
+        <script src="/socket.io/socket.io.js"></script>
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.dropotron.min.js"></script>
 		<script src="/js/config.js"></script>
 		<script src="/js/skel.min.js"></script>
 		<script src="/js/skel-panels.min.js"></script>
+		<script src="/js/dropzonejs.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="/css/skel-noscript.css" />
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-desktop.css" />
 		</noscript>
+
 
 	</head>
 	<body class="homepage">
@@ -30,18 +33,20 @@
 					<div id="header" class="container">
 						
 						<!-- Logo -->
-							<h1 id="logo"><img src="/images/logo.png" title="Okayo" alt="Okayo"></h1>
+                            <div class="animatedlog"></div>
+                            <h1 class="lead">CUB<span>O</span>X</h1>
 							<p>Store, share & manage your files everytime & everywhere</p>
 						
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="fa fa-home" href="index.html"><span>Home</span></a></li>
-									
-									<li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li>
-									<li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li>
-									<li><a class="fa fa-cloud" href="#main-wrapper"><span>My cloud</span></a></li>
-									
+									<li><a class="fa fa-home" href="/"><span>Home</span></a></li>
+                                    <% if (!user) {%><li><a class="fa fa-tasks" href="#features"><span>Find the right offer</span></a></li><% }%>
+                                    <% if (!user) {%><li><a class="fa fa-unlock" href="#banner-wrapper"><span>Login/Subscribe</span></a></li><% }%>
+                                    <% if (user) {%><li><a class="fa fa-user" href="#banner-wrapper"><span>Profile</span></a></li><% }%>
+                                    <% if (user) {%><li><a class="fa fa-cloud" href="#main-wrapper"><span>My cloud</span></a></li><% }%>
+                                    <li><a class="fa fa-pencil" href="#footer-wrapper"><span>Contact</span></a></li>
+
 								</ul>
 							</nav>
 
@@ -63,7 +68,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full basicoffer"></a>
+										<div class="animatedentity basicoffer"></div>
 										<header>
 											<h3>FREE	</h3>
 										</header>
@@ -78,7 +83,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full preniumoffer"></a>
+                                        <div class="animatedentity  preniumoffer"></div>
 										<header>
 											<h3>Membox</h3>
 										</header>
@@ -94,7 +99,7 @@
 
 								<!-- Feature -->
 									<section>
-										<a href="#" class="image image-full prooffer"></a>
+										<div class="animatedentity prooffer"></div>
 										<header>
 											<h3>Enterprise</h3>
 										</header>
@@ -119,37 +124,53 @@
 				<div class="inner">
 					
 					<section id="banner" class="container">
+                 <% if (!user) {%>
 					<div class="row">
-						<div class="8u">
+						<div class="6u">
 								<form id="banner-connex" name="banner-connect" method="POST" action="/signin">
-									<input type="text" name="email" placeholder="Your email..."/>
-									<input type="password" name="password" placeholder="password"/>
+									<input type="text" name="email" placeholder="Your email..." required/>
+									<input type="password" name="password" placeholder="password" required/>
 									<input type="submit" name="submit" value="Connexion" class="button button-icon fa fa-users"/>
 								</form>
-								<form id="banner-subscribe" name="banner-subscribe" action="/signup" method="post" >
-									<input type="radio" name="offer-choice-classic">FREE</input>
-									<input type="radio" name="offer-choice-membox">MEMBOX</input>
-									<input type="radio" name="offer-choice-enterprise">ENTERPRISE</input>
-                                    <input type="text" name="name" placeholder="Your name..."/>
-									<input type="text" name="email" placeholder="Your email..."/>
-									<input type="password" name="password" placeholder="password"/>
-									<input type="password" name="password-check" placeholder="password verification"/>
-									<input type="submit" name="submit" value="Create account" class="button button-icon fa fa-users"/>
-								</form>
-							
+
 						</div>
-						<div class="4u">
-							<ul class="actions">
-								<li><span id="sub-slide" class="button button-icon fa fa-users">Subscribe</span></li>
-							</ul>
+						<div class="6u">
+                            <form id="banner-subscribe" name="banner-subscribe" action="/signup" method="post" >
+                                <div class="first row">
+                                    <input type="radio" id="hellohi" name="choice" checked="checked">FREE
+                                    <input type="radio" id="hellohi" name="choice">MEMBOX
+                                    <input type="radio" id="hellohi" name="choice">ENTERPRISE
+                                </div>
+                                <div class="row">
+                                    <input type="text" class="left-align" name="name" placeholder="Your name..." required/>
+                                    <input type="text" name="email" placeholder="Your email..." required/>
+                                </div>
+                                <div class="row">
+                                    <input type="password" class="left-align" name="password" placeholder="password" required/>
+                                    <input type="password" name="password-check" placeholder="password verification" required/>
+                                </div>
+                                <input type="submit" name="submit" value="Create account" class="button button-icon fa fa-users"/>
+                            </form>
 						</div>
 						</div>
 					</section>
-				
+                <% }%>
+                <% if (user) {%>
+                    <div class="row">
+                        <p>Bienvenue <span><%= user.name %></span></p>
+                        <p>account: <span>MEMBOX</span></p>
+                        <table>
+                            <tr>
+                                <td>duration: <span>UNLIMITED</span></td><td>storage: <span>0/5</span></td><td>bandwitch: <span>500M</span></td><td>shared Links: <span>[NUM]/[NUM]</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                <% }%>
 			</div>
 		</div>
 
 		<!-- Main Wrapper -->
+        <%if (user){ %>
 			<div id="main-wrapper">
 
 				<!-- Main -->
@@ -158,56 +179,81 @@
 								
 							<!-- Sidebar -->
 								<div id="sidebar" class="4u">
-								
+
 									<!-- Excerpts -->
 										<section>
 											<ul class="divided">
 												<li>
 
 													<!-- Excerpt -->
-														<article class="is-excerpt">
+														<article class="is-excerpt" id="filechedli">
 															<header>
-																<span class="date">Finder</span>
-																<h3><a href="#">Navigate through your folders</a></h3>
-															</header>
-															<ul>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 1</a>
-																		<ul>
-																			<li>
-																				File 1
-																			</li>
-																			<li>
-																				File 2
-																			</li>
-																			<li>
-																				File 3
-																			</li>
-																		</ul>
-																</li>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 2</a>
-																</li>
-																<li>
-																	<a href="#" class="fa fa-folder folder" >Folder 3</a>
-																</li>
-															</ul>
-														</article>
+                                                                <h3>Navigate through your folders</h3>
+                                                                <span id="normalUploadTrigger" class="button">ADD A FILE</span>
+                                                                <!-- <span id="normalUploadFoldTrigger" class="button">ADD A FOLDER</span> -->
 
+															</header>
+
+														</article>
 												</li>
 											</ul>
+                                            <div id="formAddFold">
+                                                <h3>Add folder</h3>
+                                                <div class='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                    <button type='button' class='CreateButton button'>Create</button>
+
+                                                </div>
+                                            </div>
+
+                                            <div id="nomalUpBox"class="UploadBox hide">
+                                                <h3>File Uploader</h3>
+                                                <span class="closePop">X</span>
+                                                <div class='UploadArea'>
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+                                                    <label for="NameBox">Name: </label><input type="text" class="NameBox"><br>
+                                                    <form action="/Uploads" class="dropzone" id="normalUpDrop"></form>
+                                                    <button type='button' class='UploadButton button'>Upload</button>
+                                                </div>
+                                            </div>
+
+                                            <div id="specificUpBox" class="UploadBox hide">
+                                                <h3>File Uploader</h3>
+                                                <span class="closePop">X</span>
+                                                <div class='UploadArea'>
+
+                                                    <label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>
+
+                                                    <form action="/add" method="POST">
+                                                        <input type="radio" name="p" value="folder"/>Add a folder
+                                                        <input type="radio" name="p" value="file" />Add a file
+                                                        <input type="hidden" name="path" id="yohoho" value="file" />
+                                                        <label for="NameBox">Name: </label><input type="text" name="new" class="NameBox"><br>
+                                                        <button type='submit' class='UploadButton button'>Upload</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
 										</section>
 								
 								</div>
 								
 								<div id="content" class="8u">
-				
-								</div>
+                                    <div class="explorer">
+                                        <%- files%>
+                                    </div>
+                                </div>
+
+
+				<!---->
+								<!--</div>-->
 
 						</div>
 					</div>
 
 			</div>
+        <%}%>
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
@@ -248,9 +294,13 @@
 									<div class="row">
 										<ul class="icons 6u">
 											<li class="fa fa-home">
+                                                Tour Maine Montparnasse
+                                                40ème étage
+                                                33 avenue du Maine
+                                                75015 Paris
 											</li>
 											<li class="fa fa-phone">
-												0000000
+												0124561252
 											</li>
 											<li class="fa fa-envelope">
 												<a href="#">contact@cubox.fr</a>
@@ -280,10 +330,36 @@
 					<div id="copyright" class="container">
 						<ul class="links">
 							<li>Cubox</li>
-							<li>Supinfo year project B3</a></li>
+							<li>Supinfo year project B3</li>
 						</ul>
 					</div>
 
 			</div>
+<script>
+
+
+
+
+
+
+
+//    $('.filedownload').click(function () {
+//
+//
+//        var val = $(this).data('path');
+//       // $.get();
+//
+//
+//         $.get( '/download/'+val, function() {
+//
+//         });
+//
+//
+//
+//
+//    });
+
+</script>
+
 	</body>
 </html>

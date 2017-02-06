@@ -1,22 +1,17 @@
-/*
-	Strongly Typed 1.1 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 window._skel_config = {
 	prefix: 'css/style',
 	resetCSS: true,
 	boxModel: 'border',
-	grid: {
+	grclass: {
 		gutters: 50
 	},
 	breakpoints: {
 		'mobile': {
 			range: '-480',
 			lockViewport: true,
-			containers: 'fluid',
-			grid: {
+			containers: 'fluclass',
+			grclass: {
 				collapse: true,
 				gutters: 10
 			}
@@ -47,7 +42,7 @@ window._skel_panels_config = {
 			breakpoints: 'mobile',
 			position: 'top-left',
 			height: 44,
-			width: '100%',
+			wclassth: '100%',
 			html: '<span class="toggle" data-action="panelToggle" data-args="navPanel"></span>'
 		}
 	}
@@ -58,7 +53,7 @@ jQuery(function() {
 	jQuery.browser={};(function(){jQuery.browser.msie=false;jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)\./)){jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
 
 	// Dropdowns
-		$('#nav > ul').dropotron({ 
+		$('#nav > ul').dropotron({
 			offsetX: -2,
 			offsetY: -8,
 			mode: 'fade',
@@ -71,10 +66,127 @@ jQuery(function() {
 	// Forms (IE <= 9 only)
 		if (jQuery.browser.msie && jQuery.browser.version <= 9)
 			jQuery('form').n33_formerize();
-		
-		// Slider banner connex/subscribe
-	$( "#sub-slide" ).click(function() {
-	  $('#banner-subscribe').removeClasse('hide');
-	});
-	
+
+    $( "#normalUploadTrigger" ).on('click', function() {
+        $("#nomalUpBox").toggleClass('hide');
+    });
+
+    $( ".specificUploadTrigger" ).on('click', function() {
+
+        $("#specificUpBox").toggleClass('hide');
+        var hello = ($(this).data('folder'));
+        $('#yohoho').val(hello);
+
+    });
+
+    $( ".closePop" ).on('click', function() {
+        $("#nomalUpBox").addClass('hide');
+        $("#specificUpBox").addClass('hide');
+    });
+
+    var folder = $(".folder");
+    folder.on("click",function(){
+        $(this).parent().find("ul:first").slideToggle();
+    })
+
+    var iconfolder = $(".foldercontainer .icon");
+    iconfolder.on("click",function(){
+        $(this).parent().find("ul:first").slideToggle();
+    })
+
+    window.addEventListener("load", Ready);
+
+    function Ready(){
+        if(window.File && window.FileReader){
+            $('.UploadButton').on('click', StartUpload);
+            $('.FileBox').on('change', FileChosen);
+        }
+        else
+        {
+            $('.UploadArea').innerHTML = "Your Browser Doesn't Support The File API Please Update Your Browser";
+        }
+    }
+
+
+    var SelectedFile;
+
+    function FileChosen(evnt) {
+        SelectedFile = evnt.target.files[0];
+        console.log(SelectedFile.name);
+        $('.NameBox').val(  SelectedFile.name);
+    }
+
+    var socket = io.connect('http://localhost:3000');
+    var FReader;
+    var Name;
+    function StartUpload(){
+        if($('.FileBox').val() != "")
+        {
+            FReader = new FileReader();
+            Name = $('.NameBox').val();
+
+            var Content = "<span class='NameArea'>Uploading " + SelectedFile.name + " as " + Name + "</span>";
+            Content += '<div class="ProgressContainer"><div class="ProgressBar"></div></div><span class="percent">50%</span>';
+            Content += "<span class='Uploaded'> - <span class='MB'>0</span>/" + Math.round(SelectedFile.size / 1048576) + "MB</span>";
+
+            $('.UploadArea').html( Content);
+
+            FReader.onload = function(evnt){
+                socket.emit('Upload', { 'Name' : Name, Data : evnt.target.result });
+            }
+            socket.emit('Start', { 'Name' : Name, 'Size' : SelectedFile.size });
+        }
+        else
+        {
+            alert("Please Select A File");
+        }
+    }
+
+    socket.on('MoreData', function (data){
+        UpdateBar(data['Percent']);
+        var Place = data['Place'] * 2097152; //The Next Blocks Starting Position
+        var NewFile; //The Variable that will hold the new Block of Data
+        if(SelectedFile.slice)
+            NewFile = SelectedFile.slice(Place, Place + Math.min(2097152, (SelectedFile.size-Place)));
+        else
+            NewFile = SelectedFile.mozSlice(Place, Place + Math.min(2097152, (SelectedFile.size-Place)));
+        FReader.readAsBinaryString(NewFile);
+    });
+    function UpdateBar(percent){
+        $('.ProgressBar').css({width: percent + '%'});
+        $('.percent').html( (Math.round(percent*100)/100) + '%');
+        var MBDone = Math.round(((percent/100.0) * SelectedFile.size) / 1048576);
+        $('.MB').html(  MBDone);
+    }
+
+    var Path = "http://localhost/";
+
+    socket.on('Done', function (data){
+        var Content = "File Successfully Uploaded !!"
+        //Content += "<img class='Thumb' src='" + Path + data['Image'] + "' alt='" + Name + "'><br>";
+        //Content += "<button	type='button' name='Upload' value='' class='Restart' class='Button'>Upload Another</button>";
+        Content += '<span class="Restart" class="button">Add another file</span>';
+        $('.UploadArea').html(Content);
+        $('.Restart').on('click', Refresh);
+        $('.UploadBox').css({width : '270px'});
+        $('.UploadBox').css({height: '270px'});
+        $('.UploadBox').css({textAlign :'center'});
+        $('.Restart').css({left : '20px'});
+    });
+    function Refresh(){
+        //location.reload(true);
+        $('#UploadBox');
+        var content ='<h3>File Uploader</h3>'
+            +'<div class="UploadArea">'
+                +'<label for="FileBox">Choose A File: </label><input type="file" class="FileBox"><br>'
+                +'<label for="NameBox">Name: </label><input type="text" class="NameBox"><br>'
+                  +'  <button type="button" class="UploadButton" class="button">Upload</button>'
+                +'</div>';
+
+
+        $('.UploadBox').html( content);
+    }
+
+
 });
+

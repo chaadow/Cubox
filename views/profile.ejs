@@ -11,14 +11,14 @@
 
 
             word-wrap:break-word;
-         padding-top:80px; background-image:url('/images/poker.jpg');background-repeat: no-repeat;
+
         }
 
     </style>
 </head>
 <body >
 <div class="container">
-    <% include header.ejs%>
+
     <div class="page-header text-center">
         <h1 style="color:whitesmoke;"><span class="fa"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
@@ -43,7 +43,7 @@
                     <p>
                         <strong>Average duration of game</strong>: <%= user.countgames %><br>
                         <strong>The amount of time played</strong>: <%= user.counttime %><br>
-                        <strong>Number of games Done</strong>: <%= user.countgames %>
+                        <strong>Number of games Done</strong>: <%= user.email %>
                     </p>
                     <p>
                         <strong>Number of games won</strong>: <%= user.gameswon %><br>
